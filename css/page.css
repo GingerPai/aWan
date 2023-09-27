@@ -1,0 +1,43 @@
+h1.titleH1 {
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-align: center;
+    color: var(--webcolorDarkGreen);
+    font-size: 30px;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--webcolorDarkGreen);
+}
+h2 {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--webcolorDarkGreen);
+}
+h3,th {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--webcolorDarkGreen);
+    margin-bottom: 10px;
+}
+th,td {
+    vertical-align: middle;
+}
+body {
+    padding: 120px 0px;
+}
+.bdr {
+    border: 1px solid #f00 !important;
+}
+@media screen and (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
+    th, td {
+        font-size: 14px;
+    }
+    .form-control {
+        font-size: 14px;
+    }
+}

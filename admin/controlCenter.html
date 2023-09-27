@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿万壽司</title>
+    <link rel="shortcut icon" href="../favicon.png"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/sweetalert2.min.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/webcolor.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .awanAdmin_nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 20px 15px 20px;
+            /* border: 1px solid #132C14; */
+            border-bottom: none;
+            border-radius: 15px 15px 0px 0px;
+            background-color: rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+        }
+        .awanAdmin_nav img {
+            margin-right: 10px;
+            width: 60px;
+            height: auto;
+            vertical-align: bottom;
+        }
+        .left,.right {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        #logout {
+            background-color: #0e8e02;
+        }
+        #newOrder {
+            background-color: #028e82;
+        }
+        #logout, #newOrder {
+            color: #fff;
+            cursor: pointer;
+            transition: 0.1s;
+            box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+        }
+        #logout:hover {
+            background-color: #0c7903;
+        }
+        #newOrder:hover {
+            background-color: #03796f;
+        }
+        #logout:hover, #newOrder:hover {
+            transform: translate(0px, 1px);
+            box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            font-size: 20px;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--webcolorDarkGreen);
+        }
+        form {
+            display: table;
+            padding: 20px;
+            margin: 20px auto;
+        }
+        .memberIMG {
+            width: auto;
+            height: 35px;
+        }
+        thead,tbody {
+            text-align: center;
+        }
+        .mAthead {
+            background-color: #132C14;
+        }
+        .list-group-item {
+            border: 1px solid rgba(0,0,0,0.125);
+        }
+        .list-group-item.active {
+            background-color: #132C14;
+            border: 1px solid #132C14;
+        }
+        .menu_c:hover {
+            background-color: #132C14;
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid #132C14;
+        }
+        #orderTable th, #orderTable td {
+            vertical-align: middle;
+            text-align: center;
+            border: 1px solid var(--webcolorDarkGreen);
+        }
+        .detailed {
+            background-color: #4bc7f4;
+            color: #fff;
+        }
+        .detailed:hover {
+            background-color: #45b2da;
+            color: #fff;
+        }
+        #payBill {
+            width: 150px;
+        }
+        .table-striped>tbody#bill>tr {
+            border-top: 1px solid #dee2e6;
+        }
+        .table-striped>tbody#bill>tr:nth-of-type(odd)>* {
+            --bs-table-accent-bg: #fff;
+        }
+        .table-striped>tbody#bill>tr:nth-of-type(even)>* {
+            --bs-table-accent-bg: #fff;
+        }
+        #orderNav {
+            box-shadow: none; 
+            background-color: none; 
+            width: auto; 
+            position: initial;
+            margin-bottom: 5px;
+            border-bottom: 1px solid var(--webcolorDarkGreen);
+        }
+        #orderNav.nav-tabs .nav-link.active {
+            border: 1px solid var(--webcolorDarkGreen);
+            background-color: var(--webcolorDarkGreen);
+            color: #ffffff;
+        }
+        #orderNav .nav-link {
+            color: #999;
+            border: 1px solid #999;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-bottom: 1px solid var(--webcolorDarkGreen);
+        }
+        #orderNav .nav-link:hover {
+            text-decoration: none;
+        }
+        #orderNav.nav-tabs .nav-item:hover .nav-link {
+            background-color: var(--webcolorDarkGreen);
+            color: #ffffff;
+            cursor: pointer;
+        }
+        #memberInfo div p {
+            font-weight: bold;
+        }
+        #memberInfo div p span {
+            font-weight: lighter;
+        }
+        td.border-0.itemQuantity >* {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .menus,.add {
+            width: 30px;
+            height: 30px;
+            /* border: 1px solid #000; */
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px 10px;
+            background-color: var(--webcolorDarkGreen);
+            color: #fff;
+            font-size: 30px;
+            line-height: 30px;
+        }
+        .count {
+            width: 60px;
+            text-align: center;
+            color: var(--webcolorDarkGreen);
+            border: 1px solid var(--webcolorDarkGreen);
+        }
+        .searchCoupon {
+            color: #fff;
+            font-weight: 900;
+            background-color: #2e2b2b;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .searchCoupon:hover {
+            color: #fff;
+            transform: translate(0px,0.5px);
+            transition: 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="awanAdmin_nav">
+            <div class="left">
+                <img class="" src="../images/A_WAN_log.png" alt="">
+                <h1>阿萬壽司管理系統</h1>
+            </div>
+            <div class="right">
+                <div class="btn border" id="newOrder">新訂單</div>
+                <div class="btn border ms-2" id="logout">登出</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <ul class="list-group">
+                    <li class="list-group-item menu_c active" id="btn_order">外帶訂單</li>
+                    <li class="list-group-item menu_c building">預約訂位</li>
+                    <li class="list-group-item menu_c building">訊息管理</li>
+                    <li class="list-group-item menu_c" id="btn_memberlistArea">會員列表</li>
+                    <li class="list-group-item menu_c building">商品類別</li>
+                    <li class="list-group-item menu_c building">商品項目</li>
+                    <li class="list-group-item menu_c building">商品列表</li>
+                    <li class="list-group-item menu_c building">管理員列表</li>
+                </ul>
+            </div>
+            <div class="col-sm-10 main" id="order">
+                <h2>預約外帶</h2>
+                <div class="mt-3">
+                    <ul id="orderNav" class="nav nav-tabs">
+                        <li class="nav-item" id="orderAll">
+                            <a class="nav-link active">全部</a >
+                        </li>
+                        <li class="nav-item" id="orderUnchecked">
+                            <a class="nav-link">未結帳</a >
+                        </li>
+                        <li class="nav-item" id="orderChecked">
+                            <a class="nav-link">已結帳</a >
+                        </li>
+                        <li class="nav-item" id="orderCancelled">
+                            <a class="nav-link">已取消</a >
+                        </li>
+                    </ul>
+                </div>
+                <table class="table" id="orderTable">
+                    <thead>
+                        <tr>
+                            <th>項次</th>
+                            <th>訂單編號</th>
+                            <th>取餐日期</th>
+                            <th>取餐時段</th>
+                            <th>訂單金額</th>
+                            <th>訂單狀態</th>
+                            <th>查詢/變更/取消/結帳</th>
+                        </tr>
+                    </thead>
+                    <tbody id="memberOrderList">
+                        <tr>
+                            <td>1</td>
+                            <td class="orderNumber">Td6952010942439917</td>
+                            <td class="bookingDate">2023-09-29</td>
+                            <td class="bookingTime">11:30:00</td>
+                            <td class="orderSum">120</td>
+                            <td class="state">訂單確認中</td>
+                            <td>
+                                <button class="btn border detailed">進入</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Order detail Modal -->
+            <div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="max-width: fit-content;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title fs-5" id="exampleModalLabel">訂單內容</h2>
+                            <button type="button" class="btn-close repage" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="orderDetail">
+                            <div id="memberInfo" class="d-flex flex-md-wrap flex-column flex-md-row">
+                                <div class="col-md-6">
+                                    <p>訂單編號: <span id="orderNumber"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>會員編號: <span id="memberAcount"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>會員姓名: <span id="memberName"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>連絡電話: <span id="memberTel"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>取餐日期: <span id="bookingDate"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>取餐時段: <span id="bookingTime"></span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>訂單金額: <span id="orderSum"></span> 元</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>訂單狀態: <span id="orderState"></span></p>
+                                    <div class="thisdemo" id="orderProgress">
+                                        <div class="mb-3 form-check form-check-inline">
+                                            <input type="radio" class="form-check-input" id="" name="o_state" value="訂單確認中" checked/>
+                                            <label for="" class="form-check-label">訂單確認中</label>
+                                        </div>
+                                        <div class="mb-3 form-check form-check-inline">
+                                            <input type="radio" class="form-check-input" id="" name="o_state" value="店家已確認"/>
+                                            <label for="" class="form-check-label">店家已確認</label>
+                                        </div>
+                                        <div class="mb-3 form-check form-check-inline">
+                                            <input type="radio" class="form-check-input" id="" name="o_state" value="餐點準備中"/>
+                                            <label for="" class="form-check-label">餐點準備中</label>
+                                        </div>
+                                        <div class="mb-3 form-check form-check-inline">
+                                            <input type="radio" class="form-check-input" id="" name="o_state" value="餐點完成,待取"/>
+                                            <label for="" class="form-check-label">餐點完成,待取</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped mt-3">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0">項次</th>
+                                        <th class="border-0">商品名稱</th>
+                                        <th class="border-0">商品價格</th>
+                                        <th class="border-0">訂購數量</th>
+                                        <th class="border-0">小計</th>
+                                        <th class="border-0">狀態</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderlistItem">
+                                    <tr>
+                                        <td class="border-0">1</td>
+                                        <td class="border-0">鮭魚握壽</td>
+                                        <td class="border-0">60</td>
+                                        <td class="border-0 itemQuantity">
+                                            <div class="menus">-</div><input type="text" class="count" value="1" min="0"><div class="add">+</div>
+                                        </td>
+                                        <td class="border-0">60</td>
+                                        <td class="border-0">未出餐</td>
+                                    </tr>
+                                </tbody>
+                                <tbody id="bill">
+                                    <tr>
+                                        <td class="border-0"></td>
+                                        <td class="border-0"></td>
+                                        <td class="border-0"></td>
+                                        <td class="border-0">餐點合計</td>
+                                        <td class="border-0" id="billtotal">60</td>
+                                        <td class="border-0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-0"></td>
+                                        <td class="border-0"></td>
+                                        <td class="border-0">
+                                            <button class="btn border bg-info searchCoupon" id="searchCoupon" data-bs-toggle="modal" data-bs-target="#userCouponFModal">查詢優惠券</button>
+                                        </td>
+                                        <td class="border-0">
+                                            <input type="text" name="" id="couponN" class="text-center" value="" placeholder="優惠券代碼" disabled>
+                                            <!-- <button class="btn border bg-info searchCoupon ms-2" id="inputCouponN">確定</button> -->
+                                        </td>
+                                        <td class="border-0" id="discount">-0</td>
+                                        <td class="border-0" id="couponTitle"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-0"></td>
+                                        <td class="border-0"></td>
+                                        <td class="border-0"></td>
+                                        <td class="border-0">稅額</td>
+                                        <td class="border-0" id="tax">0</td>
+                                        <td class="border-0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-0"></td>
+                                        <td class="border-0"></td>
+                                        <td class="border-0"></td>
+                                        <td class="border-0">總計</td>
+                                        <td class="border-0" id="billSum">60</td>
+                                        <td class="border-0"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="mb-4 text-center ms-md-auto me-md-auto">
+                                <button class="btn border bg-success" id="payBill">
+                                    <h2 class="modal-title fs-5 text-light">結帳</h2>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button class="btn btn-warning border cancelorder float-start fw-bold"  data-bs-toggle="modal" data-bs-target="#orderCancelModal" id="cancalOrederBtn">取消訂單</button>
+                            <button type="button" class="btn btn-primary repage" data-bs-dismiss="modal">關閉視窗</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- medal 取消訂單-選擇原因 -->
+            <div class="modal" tabindex="-1" id="orderCancelModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title fw-boldl text-primary">確定取消訂單??</h3>
+                            <button type="button" class="btn-close clearRadioReason showOrderDetailModal" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>您確定取消 <span id="cancelOrderNumber">T16952031084321767</span></p>
+                            <p>請選擇原因：</p>
+                            <div class="thisdemo mt-2 p-2">
+                                <div class="mb-3 form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" name="reason" value="8"/>
+                                    <label for="" class="form-check-label">餐點售完</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="radio" class="form-check-input" name="reason" value="9"/>
+                                    <label for="" class="form-check-label">取餐時間已過，顧客未到店取餐</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="radio" class="form-check-input" name="reason" value="10"/>
+                                    <label for="" class="form-check-label">商品缺貨</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="radio" class="form-check-input" name="reason" value="11"/>
+                                    <label for="" class="form-check-label">會員到店取消原有訂單新增新訂單</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="cancalOreder">確定</button>
+                            <button type="button" class="btn btn-primary clearRadioReason showOrderDetailModal" data-bs-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- medal 查詢會員未使用之優惠券 -->
+            <div class="modal" id="userCouponFModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true" role="dialog">
+                <div class="modal-dialog" style="max-width: fit-content;"">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title fs-5"><span id="couponUser"></span> 會員可使用之優惠券</h2>
+                            <button type="button" class="btn-close showOrderDetailModal" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-striped table-hover table-bordered table-rwd">
+                                <thead class="text-bg-dark text-center">
+                                    <tr>
+                                        <td>項次</td>
+                                        <td>優惠代碼</td>
+                                        <td>折扣名稱</td>
+                                        <td>折扣說明</td>
+                                        <td>折扣限制說明</td>
+                                        <td>選擇</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="userAllCouponF">
+                                    <tr class="pickCoupon">
+                                        <td>項次</td>
+                                        <td data-couponn="CouponN">優惠代碼</td>
+                                        <td data-couponname="CouponName">折扣名稱</td>
+                                        <td data-details="Details">折扣說明</td>
+                                        <td data-discount="Discount">折扣金額</td>
+                                        <td data-islimit="IsLimit">折扣限制</td>
+                                        <td data-limitdetails="LimitDetails">折扣限制說明</td>
+                                        <td data-type="Type">折扣類型</td>
+                                        <td><input type="radio" name="pickCoupon"><label for="">選擇</label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger showOrderDetailModal" id="checkCoupon">確定</button>
+                            <button type="button" class="btn btn-primary showOrderDetailModal" data-bs-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 會員資料-ALL -->
+            <div class="col-sm-10 main d-none" id="memberlistArea">
+                <h2>會員資料</h2>
+                <table class="table table-striped table-hover table-bordered table-rwd">
+                    <thead class="text-bg-dark text-center">
+                        <tr class="mAthead">
+                            <th>項次</th>
+                            <th>會員照片</th>
+                            <th>會員帳號</th>
+                            <th>會員姓名</th>
+                            <th>會員暱稱</th>
+                            <th>Email</th>
+                            <th>會員生日</th>
+                            <th>會員電話</th>
+                            <th>會員狀態</th>
+                        </tr>
+                    </thead>
+                    <tbody id="memberlist">
+                        <tr>
+                            <td data-th="項次" class=""><span class="table-col ">1</span></td>
+                            <td data-th="會員照片" class=""><span class="table-col"><img src="../upload/photo/ec50a203a2_photo_1.jpg
+                                " alt="" class="memberIMG"></span></td>
+                            <td data-th="會員帳號" class=""><span class="table-col">001</span></td>
+                            <td data-th="會員姓名" class=""><span class="table-col">Ginger</span></td>
+                            <td data-th="會員暱稱" class=""><span class="table-col">Ginger</span></td>
+                            <td data-th="Email" class=""><span class="table-col">ginger@mail.com</span></td>
+                            <td data-th="會員生日" class=""><span class="table-col">2000-01-01</span></td>
+                            <td data-th="會員電話" class=""><span class="table-col">0424123456</span></td>
+                            <td data-th="會員狀態" class=""><span class="table-col">
+                            </span></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-10 d-none" id="memberlistArea">
+                <table class="table table-striped table-hover table-bordered table-rwd">
+                    <thead class="text-bg-dark text-center">
+                        <tr class="mAthead">
+                            <th>項次</th>
+                            <th>員工照片</th>
+                            <th>員工姓名</th>
+                            <th>員工編號</th>
+                            <th>員工部門</th>
+                            <th>員工級別</th>
+                            <th>員工職稱</th>
+                            <th>員工暱稱</th>
+                            <th>員工電話</th>
+                            <th>手機號碼</th>
+                            <th>地址</th>
+                            <th>Email</th>
+                            <th>生日</th>
+                            <th>員工狀態</th>
+                        </tr>
+                    </thead>
+                    <tbody id="memberlist">
+                        <tr>
+                            <td data-th="項次" class=""><span class="table-col ">1</span></td>
+                            <td data-th="會員照片" class=""><span class="table-col"><img src="../upload/photo/1b8166647b_photo_1.jpg
+                                " alt="" class="memberIMG"></span></td>
+                            <td data-th="會員帳號" class=""><span class="table-col">001</span></td>
+                            <td data-th="會員姓名" class=""><span class="table-col">Ginger</span></td>
+                            <td data-th="會員暱稱" class=""><span class="table-col">Ginger</span></td>
+                            <td data-th="Email" class=""><span class="table-col">ginger@mail.com</span></td>
+                            <td data-th="會員生日" class=""><span class="table-col">2000-01-01</span></td>
+                            <td data-th="會員電話" class=""><span class="table-col">0424123456</span></td>
+                            <td data-th="會員狀態" class=""><span class="table-col">
+                                
+                            </span></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-10 d-none" id="building">
+                <p class="fs-6">施工中</p>
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery-3.7.0.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/sweetalert2.all.min.js"></script>
+    <script src="../js/url.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script>
+        let empId = ""; //管理員帳號
+        let department = "";
+        let jobLevel = "";
+        let adminName = "";
+        let state = "";
+        let orderAll = [];
+        let tax = 0;
+        let userCouponArray = []; //會員目前可使用的優惠券;
+        $(function(){
+            // $("#orderDetailModal").modal("show");
+            // 判斷是否登入過---------------------------------start
+            // 驗證管理員是否為登入狀態，如登入狀態執行登入帶入資料，若無跳回首頁
+            if (getCookie("uid_a") != "") {
+                // uid存在
+                // 讀取會員資料
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: url + "admin/check_uid_a_api.php",
+                    data: {
+                        uid_a: getCookie("uid_a"),
+                    },
+                    // async: false,
+                    success: show_memberdata,
+                    error: function () {
+                        alert("資料回傳資料錯誤-admin/check_uid_a_api.php");
+                    }
+                })
+            }else{
+                location.href = "index.html";
+            }
+            // 判斷是否登入過---------------------------------end
+            $(".repage").click(function(){
+                location.href="";
+            })
+            //監聽switch 會員啟用或停權
+            $(".switch01").change(function(){
+                
+                $.ajax({
+                    url: url + "admin/control_u_mem_userstate_api.php",
+                    type: "POST",
+                    data: {
+                        id: $(this).data("id"),
+                        userstate: $(this).is(':checked'),
+                    },
+                    dataType:"json",
+                    success: showdata_userstate,
+                    error: function(){
+                        alert("API回傳資料錯誤-admin/control_u_mem_userstate_api.php");
+                    }
+                });
+                var userstate;
+                if($(this).is(':checked')){
+                    console.log($(this).is(':checked') + $(this).data("id"));
+                    console.log($(this).is(':checked'));
+                    console.log('啟用' + $(this).data("id"));
+                    $(this).next().text('啟用');
+                }else{
+                    console.log($(this).is(':checked'));
+                    console.log($(this).is(':checked') , $(this).data("id"));
+                    console.log('停權' + $(this).data("id"));
+                    $(this).next().text('停權');
+                }
+                //傳遞id和啟用/停權至後端更新會員狀態
+                
+            })
+            //管理員列表選單
+            $(".menu_c").click(function(){
+                $(".menu_c").removeClass("active");
+                $(this).addClass("active");
+            });
+            //開啟訂單頁面
+            $("#btn_order").click(function(){
+                $(".main").addClass("d-none");
+                $("#order").removeClass("d-none");
+                $("#building").addClass("d-none");
+            })
+            //開啟會員列表
+            $("#btn_memberlistArea").click(function(){
+                $(".main").addClass("d-none");
+                $("#memberlistArea").removeClass("d-none");
+                $("#building").addClass("d-none");
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: url + "admin/admin_mem_r_api.php",
+                    success: show_memdata,
+                    error: function(){
+                        alert("錯誤!admin_mem_r_api");
+                    }
+                })
+            })
+            //開啟施工中列表
+            $(".building").click(function(){
+                $("#building").removeClass("d-none");
+                $("#memberlistArea").addClass("d-none");
+                $("#order").addClass("d-none")
+            })
+
+            // 會員訂單nav選單-----------------------------start
+            $("#orderNav .nav-link").click(function(){
+                $("#orderNav .nav-link").removeClass("active");
+                $(this).addClass("active");
+            })
+            // 會員訂單nav選單-----------------------------end
+            // 讀取訂單進度選項
+            $.ajax({
+                type: "GET",
+                url: url + "admin/order_progress_r_api.php",
+                dataType: "json",
+                success: orderProgress,
+                error: function(){
+                    alert("錯誤-order_progress_r_api")
+                }
+            })
+            //選擇顯示全部訂單
+            $("#orderAll").click(function(){
+                readAllOrder();
+            })
+            //選擇顯示未結帳訂單
+            $("#orderUnchecked").click(function(){
+                //orderPaymentStatus = ops
+                let ops = "Unpaid";
+                paymentStatus(ops);
+            })
+            //選擇顯示已結帳訂單
+            $("#orderChecked").click(function(){
+                //orderPaymentStatus = ops
+                let ops = "Paid";
+                paymentStatus(ops);
+            })
+            //選擇顯示已取消訂單
+            $("#orderCancelled").click(function(){
+                let ops = "Cancelled";
+                paymentStatus(ops);
+            })
+            // 會員中心-資料項目列-會員訂單-orderlistItem訂單內容
+            $(document).on("click",".detailed",function(){
+
+                let orderStatus = $(this).data("orderstatus");
+                let orderNumber = $(this).parents().siblings(".orderNumber").text();
+                let userAcount = $(this).data("useracount");
+                let bookingDate = $(this).parents().siblings(".bookingDate").text();
+                let bookingTime = $(this).parents().siblings(".bookingTime").text();
+                let orderSum = $(this).parents().siblings(".orderSum").text();
+                let thisOrderState = $(this).parents().siblings(".state").data("state");
+                let couponNum = "";
+                let couponAmount = 0;
+                orderAll.forEach(function(item){
+                    if(OrderNumber = item.OrderNumber){
+                        couponNum = item.CouponNum;
+                        couponAmount = item.CouponAmount;
+                    }
+                });
+                $("#orderNumber").text(orderNumber);
+                $("#memberAcount").text(userAcount);
+                $("#bookingDate").text(bookingDate);
+                $("#bookingTime").text(bookingTime);
+                $("#orderSum").text(orderSum);
+                $("#orderState").text(thisOrderState);
+                $("#couponN").text(couponNum);
+                $("discount").text(couponAmount);
+                // let stateCode = $(this).parents().siblings(".state").data("statecode");
+                let statetitle = $(this).data("statetitle");
+                //訂單進度
+                $.each($("input[name='o_state']"), function () {
+                    if($(this).val() == statetitle){
+                        $(this).prop("checked", true);
+                    }
+                });
+                // 訂單為open可變更進度選項
+                if(orderStatus == "open"){
+                    cancelOrderFunct();
+                }else{
+                    cancelOrderFunct_dn ();
+                }
+
+                // 查詢訂單訂購人姓名電話
+                $.ajax({
+                    type: "POST",
+                    url: url + "admin/searchMemberNameTel_r_api.php",
+                    dataType: "json",
+                    data: {
+                        userAcount: userAcount,
+                    },
+                    success: function(data){
+                        console.log(data);
+                        if (data.message){
+                            // Orderer's name
+                            $("#memberName").text(data.data[0].Username); 
+                            //Orderer’s contact number
+                            $("#memberTel").text(data.data[0].Phone);
+                        }else{
+                            alert("會員姓名電話: "+data.message);
+                        }
+                    },
+                    error: function(){
+                        alert("錯誤-serchMemberNameTel_r_api")
+                    }
+                })
+                // 查詢訂單訂購內容
+                $.ajax({
+                    type: "POST",
+                    url: url + "member/memberorderlist_r_api.php",
+                    dataType: "json",
+                    data: {
+                        orderNumber: orderNumber,
+                    },
+                    success: orderDetail,
+                    error: function(){
+                        alert("錯誤-memberorderlist_r_api")
+                    }
+                })
+            })
+            $(document).on("change",".o_state",function(){
+                $.each($("input[name='o_state']"), function () {
+                    if($(this).is(':checked')){
+                        console.log($(this).data("id"));
+                        let orderNumber = $("#orderNumber").text();
+                        console.log(orderNumber);
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: url+"admin/order_progress_u_api.php",
+                            data: {
+                                orderNumber: orderNumber,
+                                state: $(this).data("id")
+                            },
+                            async: false,
+                            success: function(data){
+                                console.log(data);
+                                if(data.state){
+                                    console.log(data.message);
+                                    $("#orderState").text(data.data[0].StateReason);
+                                }else{
+                                    alert.log(data.message);
+                                }
+                            },
+                            error: function(){
+                                alert(data.message);
+                            }
+                        })
+                    }
+                });
+            });
+            $(document).on("click",".menus",function(){
+                $("#couponN").val("");
+                $("#discount").text("-0");
+                $("#couponTitle").text("");
+                let i = $(this).siblings(".count").val();
+                let orderNum = $("#orderNumber").text();
+                let id = $(this).data("id");
+                if(i>0){
+                    i--;
+                }else{
+                    i=0;
+                }
+                $(this).siblings(".count").val(i);
+                console.log(i);
+                console.log(orderNum);
+                console.log(id);
+                changeItemOrderAmount(id, orderNum, i);
+                // let couponN = $("#couponN").val();
+                // console.log(couponN);
+                // useCouponN(couponN);
+                // if(couponN == ""){
+                // }
+            });
+            $(document).on("click",".add",function(){
+                $("#couponN").val("");
+                $("#discount").text("-0");
+                $("#couponTitle").text("");
+                let i = $(this).siblings(".count").val();
+                let orderNum = $("#orderNumber").text();
+                let id = $(this).data("id");
+                if(i < 10){
+                    i++;
+                }else{
+                    i=10;
+                }
+                $(this).siblings(".count").val(i);
+                console.log(i);
+                console.log(orderNum);
+                console.log(id);
+                changeItemOrderAmount(id, orderNum, i);
+
+                // let couponN = $("#couponN").val();
+                // console.log(couponN);
+                // useCouponN(couponN);
+                // if(couponN == ""){
+                // }
+            })
+
+            // 待解決先關閉這顆按鈕
+            // $("#inputCouponN").click(function(){
+            //     let couponN = $("#couponN").val();
+            //     console.log(couponN);
+            //     if(couponN == ""){
+            //         useCouponN(couponN);
+            //     }
+            // })
+            $("#searchCoupon").click(function(){
+                $("#orderDetailModal").modal("show");
+                let orderUser = $("#memberAcount").text();
+                $("#couponUser").text(orderUser);
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: url+"admin/coupon_r_mem_f_api.php",
+                    data: {
+                        userCouponF: orderUser
+                    },
+                    success: readUserCoupF,
+                    error: function(){
+                        alert(錯誤-coupon_r_mem_f_api)
+                    }
+                    
+                })
+            })
+            // 點擊區域選折區域內input[type='radio']
+            $(document).on("click",".pickCoupon",function(){
+                $(this).find("input[type='radio']").prop("checked", true);
+            });
+            $("#checkCoupon").click(function(){
+                let couponN = "";    //優惠券代號
+                $.each($("input[name='pickCoupon']:checked"), function () {
+                    // couponname = $(this).data("couponname");
+                    couponN = $(this).data("couponn");
+                    // islimit = $(this).data("islimit");
+                    // couponType = $(this).data("type");
+                    // couponDiscount = $(this).data("discount");
+                    // limitamount = parseInt($(this).data("limitamount"));
+                });
+                useCouponN(couponN);
+
+            })
+            $("#payBill").click(function(){
+                // 生成訂單時間&&日期 ---------------------------------------- start
+                let currentDate = new Date();
+                let hours = currentDate.getHours();
+                let minutes = currentDate.getMinutes();
+                let seconds = currentDate.getSeconds();
+                // 添加前導零，確保時間格式為两位数
+                if (hours < 10) hours = "0" + hours;
+                if (minutes < 10) minutes = "0" + minutes;
+                if (seconds < 10) seconds = "0" + seconds;
+                let formattedTime = hours + ":" + minutes + ":" + seconds;
+
+                let year = currentDate.getFullYear();
+                let month = currentDate.getMonth() + 1; // 月份从0開始，所以要加1
+                let day = currentDate.getDate();
+                // 添加前導零，確保日期格式為两位数
+                if (month < 10) month = "0" + month;
+                if (day < 10) day = "0" + day;
+                let formattedDate = year + "-" + month + "-" + day;
+                let paytime = formattedDate + " " +formattedTime; //訂單成立時間
+                // 生成訂單時間&&日期 ---------------------------------------- end
+
+                console.log("管理者:"+empId);
+                console.log("訂單編號: " + $("#orderNumber").text()); //訂單編號
+                console.log("使用者帳號: " + $("#memberAcount").text()); //訂單編號
+                console.log("折扣券代碼val: " + $("#couponN").val()); //優惠券代碼
+                // console.log("折扣券代碼text: " + $("#couponN").text()); //優惠券代碼
+                console.log("折扣金額: " + $("#discount").text()); //折扣金額
+                console.log("結帳金額: " + $("#billSum").text()); //結帳金額
+                console.log("結帳時間: " + paytime ); //結帳時間
+                console.log("結帳人員: " + empId ); //結帳人員
+                //更新訂單內容(訂單編號、使用者帳號、優惠劵代碼、折扣金額、結帳金額、結帳時間、訂單狀態:5、結帳人員為誰)
+                //可為空:優惠劵代碼、折扣金額
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: url + "admin/pay_mem_order_u_api.php",
+                    data: {
+                        orderNumber: $("#orderNumber").text(),
+                        userAcount: $("#memberAcount").text(),
+                        couponN: $("#couponN").val(),
+                        discount: $("#discount").text(),
+                        billSum: $("#billSum").text(),
+                        useTime: paytime,
+                        orderstate: "5", 
+                        cashier: empId
+                    },
+                    success: function(data){
+                        if(data.state){
+                            console.log(data.message)
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: data.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }else{
+                            console.log(data.message)
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: data.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function(){
+                        alert("錯誤pay_mem_order_u_api");
+                    }
+                })
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: url + "admin/pay_mem_orderlist_u_api.php",
+                    data: {
+                        orderNumber: $("#orderNumber").text(),
+                        state: "Shipped",
+                    },
+                    success: function(data){
+                        if(data.state){
+                            console.log(data.message)
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: data.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }else{
+                            console.log(data.message)
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: data.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function(){
+                        alert("錯誤pay_mem_orderlist_u_api");
+                    }
+                })
+
+                //更新優惠劵使用內容(優惠劵代碼、訂單編號、訂單金額、折扣金額、使用時間、變更使用狀態)，如訂單優惠券為空不執行
+                console.log("折扣券代碼val: " + $("#couponN").val()); //優惠券代碼
+                console.log("訂單編號: " + $("#orderNumber").text()); //訂單編號
+                console.log("訂單金額: " + $("#billtotal").text());  //訂單金額
+                console.log("折扣金額: " + $("#discount").text());  //折扣金額
+                console.log("使用時間: " + paytime);   //使用時間
+                console.log("變更使用狀態: " + "true"); //變更使用狀態
+                if ($("#couponN").val() != ""){
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: url + "admin/coupon_u_api.php",
+                        data: {
+                            couponN: $("#couponN").val(),
+                            orderNumber: $("#orderNumber").text(),
+                            billAmount: $("#billtotal").text(),
+                            discount: $("#discount").text(),
+                            useTime: paytime,
+                            active: "true"
+                        },
+                        success: function(data){
+                            if(data.state){
+                                console.log(data.message)
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: data.message,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }else{
+                                console.log(data.message)
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'error',
+                                    title: data.message,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        },
+                        error: function(){
+                            alert("錯誤coupon_u_api");
+                        }
+                    })
+                }
+                $("#orderDetailModal").modal("hide");
+                location.href = "";
+            })
+            
+            // 取消訂單
+            $(document).on("click","#cancalOrederBtn",function(){
+                let orderNumber = $("#orderNumber").text();
+                console.log(orderNumber);
+                $("#cancelOrderNumber").text(orderNumber);
+            })
+            $(".showOrderDetailModal").click(function(){
+                $("#orderDetailModal").modal("show");
+            })
+            $(".clearRadioReason").click(function(){
+                $("input[name='reason']").prop("checked", false);
+            })
+            //取消訂單及選擇取消原因
+            $(document).on("click","#cancalOreder",function(){
+                let cancelReason = "";
+                $.each($("input[name='reason']:checked"), function () {
+                    cancelReason = $(this).val();
+                });
+                console.log(cancelReason);
+                if (cancelReason!=""){
+                    let cancelOrderNumber = $("#cancelOrderNumber").text();
+                    console.log(cancelOrderNumber);
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: url+"admin/admin_orderCancel_api.php",
+                        data: {
+                            state: cancelReason,
+                            ordernumber: cancelOrderNumber,
+                        },
+                        success: function(data){
+                            if(data.state){
+                                $("#orderCancelModal").modal("hide");
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: data.message,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                // 訂單更改狀態重新讀取訂單
+                                $.ajax({
+                                    type: "POST",
+                                    url: url + "member/memberorder_r_api.php",
+                                    data: {
+                                        userAcount: $("#memberAcount").text(),
+                                    },
+                                    dataType: "json",
+                                    success: memberOrder,
+                                    error: function () {
+                                        alert("錯誤，memberorder_r_api.php");
+                                    } 
+                                })
+                                location.href = "";
+                            }else{
+                                $("#orderCancelModal").modal("hide");
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'error',
+                                    title: data.message,
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                })
+                                console.log(data.message);
+                            }
+                        },
+                        error: function(){
+                            alert("錯誤!mem_orderCancel_api");
+                        }
+                    })
+                }else{
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'info',
+                        title: "您尚未選擇取消原因",
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }
+            })
+            // 會員登出 ----------------------------start
+            //登出帳號、刪除uid並重整畫面
+            $("#logout").click(function () {
+                console.log("hi");
+                setCookie("uid_a", "", 7);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: adminName +" 您已登出",
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+                location.href = "index.html";
+            });
+            // 會員登出 ----------------------------end
+        })
+        function show_memberdata(data){
+            console.log(data);
+            allMemberData = data;
+            empId = data.data[0].EmpID;
+            department = data.data[0].Department;
+            jobLevel = data.data[0].JobLevel;
+            adminName = data.data[0].Name;
+            state = data.data[0].State;
+            if (state){
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: url + "admin/memberorder_r_all_api.php",
+                    success: memberOrder,
+                    error: function(){
+                        alert("錯誤!admin_mem_r_api");
+                    }
+                })
+            }else{
+                location.href = "index.html";
+            }
+        }
+        function showdata_userstate(data){
+            console.log(data);
+            if (data.state){
+                alert(data.message);
+                location.href = "controlCenter.html";
+            }else{
+                alert(data.message);
+                location.href = "controlCenter.html";
+            }
+        }
+        function changeItemOrderAmount(id, orderNum, updateAmount){
+            // 更新項目數量
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: url + "admin/orderItem_u_amount.php",
+                data: {
+                    id: id,
+                    orderNum: orderNum,
+                    orderAmount: updateAmount
+                },
+                success: function(data){
+                    console.log(data);
+                    let orderNumber = $("#orderNumber").text();
+                    // 讀取訂單內容
+                    if (data.state){
+                        //讀取更新後項目
+                        $.ajax({
+                            type: "POST",
+                            url: url + "member/memberorderlist_r_api.php",
+                            dataType: "json",
+                            data: {
+                                orderNumber: orderNumber,
+                            },
+                            success: orderDetail,
+                            error: function(){
+                                alert("錯誤-memberorderlist_r_api")
+                            }
+                        })
+                        // 讀取訂單內容(member's order content Item list, table name: )更新後項目加總金額後更新訂單金額
+                    }else{
+                        console.log(data.message);
+                    }
+                },
+                error: function(){
+                    alert("錯誤orderItem_u_amount.php")
+                }
+            })
+        }
+        function useCouponN(couponn){
+            // let billtotal = parseInt($("#billtotal").text()); // 訂單合計金額
+            let couponN = couponn;   //優惠券代碼;
+            let couponname = "";     //優惠券名稱
+            let couponType;          //優惠類型
+            let couponDiscount;      //優惠金額或折數
+            let calcDiscount;        //計算後可折價金額
+            let limitamount;         //使用門檻的限制金額
+            userCouponArray.forEach(function(item){
+                if (item.CouponN == couponn){
+                    couponname = item.CouponName;
+                    couponType = item.Type;
+                    couponDiscount = item.Discount;
+                    limitamount = item.LimitAmount;
+                }
+                // else {
+                //     Swal.fire({
+                //         position: 'center',
+                //         icon: 'info',
+                //         title: " !! 查無優待券 !! ",
+                //         showConfirmButton: false,
+                //         timer: 2000
+                //     })
+                // }
+            });
+            if(couponType == "-"){
+                calcDiscount = "-" + couponDiscount;
+            } else if (couponType == "*"){
+                let cdcTo2 = parseFloat(couponDiscount);
+                cdcTo2 = cdcTo2.toFixed(2);    //0.95,typeof:string
+                // console.log(cdcTo2+",typeof:"+typeof(cdcTo2));
+                cdcTo2 =  parseFloat(cdcTo2);  //0.95,typeof:number
+                // console.log(cdcTo2+",typeof:"+typeof(cdcTo2));
+
+
+                let k = 1;
+                console.log(k+",typeof:"+typeof(k));
+                k = parseFloat(k);
+                console.log(k+",typeof:"+typeof(k));
+                k = k.toFixed(2);
+                console.log(k+",typeof:"+typeof(k));
+                k = parseFloat(k);
+                console.log(k+",typeof:"+typeof(k));
+
+
+                cdcTo2 = k - cdcTo2;          //0.050000000000000044,typeof:number
+                // console.log(cdcTo2+",typeof:"+typeof(cdcTo2));
+                cdcTo2 = cdcTo2.toFixed(2);   //0.05,typeof:string
+                // console.log(cdcTo2+",typeof:"+typeof(cdcTo2));
+                cdcTo2 = parseFloat(cdcTo2);  //0.05,typeof:number
+                // console.log(cdcTo2+",typeof:"+typeof(cdcTo2));
+                let billtotal = parseInt($("#billtotal").text()); // 訂單合計金額
+                calcDiscount = billtotal * cdcTo2;
+                // console.log(calcDiscount+",typeof:"+typeof(calcDiscount));
+                calcDiscount = "-" + calcDiscount;
+
+            } else if (couponType == "F") {
+                let billtotal = parseInt($("#billtotal").text()); // 訂單合計金額
+                if (billtotal>limitamount){
+                    calcDiscount = "-" + couponDiscount;
+                } else {
+                    calcDiscount = 0;
+                    couponN = "";
+                    couponname = "";
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'info',
+                        title: " Sorry!! 未達使用門檻喔! ",
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }
+            } else if (couponType == "="){
+                calcDiscount = 0;
+            }
+        
+            let billtotal = parseInt($("#billtotal").text()); // 訂單合計金額
+            let ifDisBig = parseInt(calcDiscount);
+            console.log(ifDisBig);
+            console.log(billtotal);
+            if (-ifDisBig > billtotal){
+                calcDiscount = "-"+billtotal;
+            };
+            let calcBillSum = billtotal + parseInt(calcDiscount); // 計算減去折扣後金額
+            $("#couponN").val(couponN);   //優惠券代碼
+            $("#discount").text(calcDiscount); //優惠券折扣後金額欄位
+            $("#couponTitle").text(couponname); //優惠券名稱
+            // console.log("calcBillSum: " + calcBillSum  +",typeof:" + typeof(calcBillSum));
+            $("#billSum").text(calcBillSum);   // 總計欄位: 計算減去折扣後金額
+
+            $("#userCouponFModal").modal("hide");
+
+        }
+        function show_memdata(data){
+            console.log(data);
+            if(data.state){
+                console.log(data.message);
+                //停權會員權利
+                //管理部: BOSS、Manager
+                //餐飲部: Manager
+                if(department == "1" && jobLevel == "1"||department == "1" && jobLevel == "2"||department == "6" && jobLevel == "2"){
+                    let i = 1;
+                    $("#memberlist").empty();
+                    data.data.forEach(function(item){
+                        var switch01;
+                        if(item.UserState == 'true' ){
+                            switch01 = '<div class="mb-3 form-check form-switch"><input type="checkbox" class="form-check-input switch01" role="switch" checked data-id="'+ item.ID +'" name="userstate"><label for="" class="form-check-label">啟用</label></div>';
+                        }else{
+                            switch01 = '<div class="mb-3 form-check form-switch"><input type="checkbox" class="form-check-input switch01" role="switch" data-id="'+ item.ID +'" name="userstate"><label for="" class="form-check-label" >停權</label></div>';
+                        }
+                        let photoScr;
+                        if(item.Photo != null){
+                            photoScr = '<img src="../upload/photo/' + item.Photo +'" class="memberIMG">';
+                        }else{
+                            photoScr = '<img src="../upload/photo/'+ item.Photo +'" class="memberIMG d-none">';
+                        }
+                        let strHTML = 
+                        '<tr><td data-th="項次" class=""><span class="table-col ">' + i + '</span></td><td data-th="會員照片" class=""><span class="table-col"> ' + photoScr + ' </span></td><td data-th="會員帳號" class=""><span class="table-col">' + item.UserAcount + '</span></td><td data-th="會員姓名" class=""><span class="table-col">' + item.Username + '</span></td><td data-th="會員暱稱" class=""><span class="table-col">' + item.Nickname + '</span></td><td data-th="Email" class=""><span class="table-col"> ' + item.Email + ' </span></td><td data-th="會員生日" class=""><span class="table-col">' + item.Birthday + '</span></td><td data-th="會員電話" class=""><span class="table-col"> ' + item.Phone + ' </span></td><td data-th="會員狀態" class=""><span class="table-col"> ' + switch01 + ' </span></td></tr>';
+                        $("#memberlist").append(strHTML);
+                        i++;
+                    })
+                }else{
+                    let i = 1;
+                    $("#memberlist").empty();
+                    data.data.forEach(function(item){
+                        var switch01;
+                        if(item.UserState == 'true' ){
+                            switch01 = '<div class="mb-3 form-check form-switch"><label for="" class="form-check-label">啟用</label></div>';
+                        }else{
+                            switch01 = '<div class="mb-3 form-check form-switch"><label for="" class="form-check-label" >停權</label></div>';
+                        }
+                        let photoScr;
+                        if(item.Photo != null){
+                            photoScr = '<img src="../upload/photo/' + item.Photo +'" class="memberIMG">';
+                        }else{
+                            photoScr = '<img src="../upload/photo/'+ item.Photo +'" class="memberIMG d-none">';
+                        }
+    
+                        let strHTML = 
+                        '<tr><td data-th="項次" class=""><span class="table-col ">' + i + '</span></td><td data-th="會員照片" class=""><span class="table-col"> ' + photoScr + ' </span></td><td data-th="會員帳號" class=""><span class="table-col">' + item.UserAcount + '</span></td><td data-th="會員姓名" class=""><span class="table-col">' + item.Username + '</span></td><td data-th="會員暱稱" class=""><span class="table-col">' + item.Nickname + '</span></td><td data-th="Email" class=""><span class="table-col"> ' + item.Email + ' </span></td><td data-th="會員生日" class=""><span class="table-col">' + item.Birthday + '</span></td><td data-th="會員電話" class=""><span class="table-col"> ' + item.Phone + ' </span></td><td data-th="會員狀態" class=""><span class="table-col"> ' + switch01 + ' </span></td></tr>';
+                        $("#memberlist").append(strHTML);
+                        i++;
+                    })
+                }
+            }else{
+                console.log(data.message);
+            }
+        }
+        function memberOrder(data){
+            console.log(data);
+            if(data.state){
+                orderAll = data.data;
+                readAllOrder();
+            }else{
+                console.log(data.message);
+            }
+        }
+        function readAllOrder(){
+            $("#memberOrderList").empty();
+            let i = 1;
+            console.log(orderAll);
+            orderAll.forEach(function (item) {
+                let str = 
+                    '<tr><td>'+i+'</td>'+
+                    '<td class="orderNumber">'+item.OrderNumber+'</td>'+
+                    '<td class="bookingDate">'+item.BookingDate+'</td>'+
+                    '<td class="bookingTime">'+item.BookingTime+'</td>'+
+                    '<td class="orderSum">'+item.OrderSum+'</td>'+
+                    '<td class="state" data-state="'+item.StateReason+'" data-statecode="'+item.CodeName+'"><span class="fw-bolder" style="color: '+item.color+';">'+item.StateTitle+'</span></td>'+
+                    '<td><button class="btn border detailed" data-useracount="'+item.UserAcount +'" data-orderstatus="'+item.status+'" data-statetitle="'+ item.StateTitle +'" data-couponnum="'+item.CouponNum+'">進入</button></td></tr>';
+                $("#memberOrderList").append(str);
+                i++;
+            })
+        }
+        function paymentStatus(ops){
+            $("#memberOrderList").empty();
+            let i = 1;
+            orderAll.forEach(function (item) {
+                if (item.PaymentStatus == ops){
+                    let str = 
+                        '<tr><td>'+i+'</td>'+
+                        '<td class="orderNumber">'+item.OrderNumber+'</td>'+
+                        '<td class="bookingDate">'+item.BookingDate+'</td>'+
+                        '<td class="bookingTime">'+item.BookingTime+'</td>'+
+                        '<td class="orderSum">'+item.OrderSum+'</td>'+
+                        '<td class="state" data-state="'+item.StateReason+'" data-statecode="'+item.CodeName+'"><span class="fw-bolder" style="color: '+item.color+';">'+item.StateTitle+'</span></td>'+
+                        '<td><button class="btn border detailed" data-useracount="'+item.UserAcount +'" data-orderstatus="'+item.status+'" data-statetitle="'+ item.StateTitle +'" data-couponnum="'+item.CouponNum+'">進入</button></td></tr>';
+                    $("#memberOrderList").append(str);
+                    i++;
+                }
+            })
+        };
+        function orderDetail(data){
+            console.log(data);
+            if (data.state){
+                console.log(data.message);
+                let i = 1;
+                let total = 0;
+                let discount = parseInt($("#discount").text());
+                let billSum = 0;
+                $("#orderlistItem").empty();
+                if (data.orderstatus[0].status == "open"){
+                    data.data.forEach((item)=>{
+                        let state = "";
+                        if (item.State == "NotShipped") {
+                            state = "未出餐";
+                        }else if (item.State == "Shipped") {
+                            state = "已出餐";
+                        }
+                        let Subtotal = item.Price * item.OrderAmount;
+                        total = total + Subtotal;
+                        billSum = total + tax + discount;
+                        let str = 
+                            '<tr>'+
+                                '<td class="border-0">'+i+'</td>'+
+                                '<td class="border-0">'+item.ProductName+'</td>'+
+                                '<td class="border-0">'+item.Price+'</td>'+
+                                '<td class="border-0 itemQuantity"><div class="menus" data-id="'+item.ID+'">-</div><input type="text" class="count" value="'+item.OrderAmount+'" readonly=="readonly"><div class="add" data-id="'+item.ID+'">+</div></td>'+
+                                '<td class="border-0">'+Subtotal+'</td>'+
+                                '<td class="border-0">'+ state +'</td></tr>';
+                        $("#orderlistItem").append(str);
+                        i++;
+                        $("#billtotal").text(total);
+                        $("#tax").text(tax);
+                        $("#billSum").text(billSum);
+                    })
+                    
+                    // 讀取訂單金額
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: url + "admin/update_order_sum_api.php",
+                        data: {
+                            sum: total,
+                            orderNumber: data.orderstatus[0].OrderNumber,
+                        },
+                        success: function(data){
+                            console.log(data);
+                            if(data.state){
+                                console.log(data.message);
+                                $("#orderSum").text(data.data[0].OrderSum);
+                            }else{
+                                console.log(data.message);
+                            }
+                        },
+                        error: function(){
+                            alert("錯誤-update_order_sum_api");
+                        }
+                    })
+                    
+                }else{
+                    data.data.forEach((item)=>{
+                        let state = "";
+                        if (item.State == "NotShipped") {
+                            state = "未出餐";
+                        }else if (item.State == "Shipped") {
+                            state = "已出餐";
+                        }
+                        let Subtotal = item.Price * item.OrderAmount;
+                        total = total + Subtotal;
+                        billSum = total + tax + discount;
+                        let str = 
+                            '<tr>'+
+                                '<td class="border-0">'+i+'</td>'+
+                                '<td class="border-0">'+item.ProductName+'</td>'+
+                                '<td class="border-0">'+item.Price+'</td>'+
+                                '<td class="border-0">'+item.OrderAmount+'</td>'+
+                                '<td class="border-0">'+Subtotal+'</td>'+
+                                '<td class="border-0">'+ state +'</td></tr>';
+                        $("#orderlistItem").append(str);
+                        i++;
+                        $("#billtotal").text(total);
+                        $("#tax").text(tax);
+                        $("#billSum").text(billSum);
+                    })
+                }
+                // let couponN = $("#couponN").val();
+                // console.log(couponN);
+                // if(couponN == ""){
+                //     useCouponN(couponN);
+                // }
+                
+                $("#orderDetailModal").modal("show");
+            }else{
+                console.log(data.message);
+            }
+        }
+        function orderProgress(data){
+            console.log(data);
+            if(data.state){
+                $("#orderProgress").empty();
+                data.data.forEach(function(item){
+                    let str = '<div class="mb-3 form-check form-check-inline"><input type="radio" class="form-check-input o_state" id="o_state'+item.ID+'" name="o_state" value="'+item.StateTitle+'" data-id="'+item.ID+'" data-statereason="'+item.StateReason+'" /><label for="o_state'+item.ID+'" class="form-check-label o_state" data-id="'+item.ID+'" data-statereason="'+item.StateReason+'">'+item.StateTitle+'</label></div>';
+                    $("#orderProgress").append(str);
+                })
+                
+            }else{
+                alert(data.message);
+            }
+        }
+        function readUserCoupF (data){
+            console.log(data);
+            userCouponArray = data.data;
+            console.log(userCouponArray);
+            if(data.state){
+                console.log(data.message);
+                let i = 1;
+                $("#userAllCouponF").empty();
+                data.data.forEach(function(item){
+                    let str = 
+                    '<tr class="pickCoupon"><td>'+i+'</td>'+
+                        '<td data-couponn="'+item.CouponN+'">'+item.CouponN+'</td>'+
+                        '<td data-couponname="'+item.CouponName+'">'+item.CouponName+'</td>'+
+                        '<td data-details="'+item.Details+'">'+item.Details+'</td>'+
+                        '<td data-limitdetails="'+item.LimitDetails+'">'+item.LimitDetails+'</td>'+
+                        '<td><input type="radio" name="pickCoupon" class="me-2 couponRadio" data-couponname="'+item.CouponName+'" data-couponn="'+item.CouponN+'" data-islimit="'+item.IsLimit+'" data-type="'+item.Type+'" data-discount="'+item.Discount+'" data-limitamount="'+item.LimitAmount+'"><label for="">選擇</label></td>'+
+                    '</tr>';
+                    $("#userAllCouponF").append(str);
+                    i++;
+                })
+            }else{
+                cconsole.log(data.message);
+            }
+        }
+        function cancelOrderFunct() {
+            $("#payBill").removeClass("d-none");
+            $("#searchCoupon").removeClass("d-none");
+            $("#couponN").removeAttr("disabled");
+            $("#orderProgress").removeClass("d-none");
+            $("#cancalOrederBtn").removeClass("d-none");
+            $("#orderDetailModal .modal-footer").addClass("justify-content-between");
+        }
+        function cancelOrderFunct_dn () {
+            $("#payBill").addClass("d-none");
+            $("#searchCoupon").addClass("d-none");
+            $("#couponN").prop("disabled", true);
+            $("#orderProgress").addClass("d-none");
+            $("#cancalOrederBtn").addClass("d-none");
+            $("#orderDetailModal .modal-footer").removeClass("justify-content-between");
+        }
+    </script>
+</body>
+</html>

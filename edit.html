@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿万壽司</title>
+    <link rel="shortcut icon" href="favicon.png"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/webcolor.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/page.css">
+    <style>
+        h1 {
+            margin-bottom: 50px;
+        }
+        #memberPhoto{
+            width: 150px;
+            padding: 10px;
+        }
+        .mem_menu {
+            border: 1px solid var(--webcolorDarkGreenl);
+        }
+        .mem_menu.active {
+            background-color: var(--webcolorDarkGreen);
+        }
+        .mem_menu:hover {
+            background-color: var(--webcolorDarkGreen);
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid var(--webcolorDarkGreen);
+        }
+        th, td {
+            vertical-align: middle;
+            border: 1px solid var(--webcolorDarkGreen);
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="container-md my-md-2">
+            <div class="navRow">
+                <a href="index.html" class="navbar-brand">
+                    <img id="nav-logo" src="images/A_WAN_log.png" alt="">
+                </a>
+                <div class="" id="navbarNav">
+                    <ul class="navMenu" id="">
+                        <li class="nav-item me-1">
+                            <a class="nav-link" href="news.html">最新消息</a>
+                        </li>
+                        <li class="nav-item me-1">
+                            <a class="nav-link" href="product.html">阿万產品</a>
+                        </li>
+                        <li class="nav-item me-1">
+                            <a class="nav-link" href="about.html">店家介紹</a>
+                        </li>
+                        <li class="nav-item me-1">
+                            <a class="nav-link" href="contact.html">聯絡我們</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="navFunction">
+                    <a href="shoppingCar.html" id="shoppingCar">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                    <a href="" class="btn btn-outline-dark d-none"  data-bs-toggle="modal" data-bs-target="#loginModal" id="openloginModal">登入</a>
+                    <div id="member" class="">
+                        <img src="images/member_icon.svg" alt="">
+                        <ul id="memberMenu" class="d-none">
+                            <li><a href="memberCenter.html" id="toMemberCenter"><p>會員中心</p></a></li>
+                            <li><a href="javascript:void(0)" id="logout"><p>登出</p></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            <h1 class="titleH1">會員中心-資料編輯</h1>
+        </div>
+    </section>
+    <section id="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 m-auto">
+                    <form action="edit.html" method="get" class="">
+                        <table class="table">
+                            <tr >
+                                <th class="col-2">會員照片</th>
+                                <td class="col-5">
+                                    <img src="" alt="" id="memberPhoto" class="m-2">
+                                    <input type="file" class="form-control" name="photo" id="photo">
+                                </td>
+                            </tr>
+                            <tr >
+                                <th class="col-2">會員帳戶</th>
+                                <td id="memberAcount" class="col-5">
+                                </td>
+                            </tr>
+                            <tr >
+                                <th class="col-2">會員姓名</th>
+                                <td id="memberName" class="col-5">
+                                    <input type="text" class="form-control">
+                                    <div id="info_mN" class="form-text text-end">會員姓名限制2~8字</div>
+                                </td>
+                            </tr>
+                            <tr >
+                                <th class="col-2">會員暱稱</th>
+                                <td id="memberNickName" class="col-5">
+                                    <input type="text" class="form-control">
+                                    <div id="info_mNN" class="form-text text-end">會員
+                                    暱稱限制2~16字</div>
+                                </td>
+                            </tr>
+                            <tr >
+                                <th class="col-2">Email</th>
+                                <td id="memberEmail" class="col-5">
+                                    <input type="text" class="form-control">
+                                    <div id="info_mE" class="form-text text-end">email</div>
+                                </td>
+                            </tr>
+                            <tr >
+                                <th class="col-2">出生年月日</th>
+                                <td id="memberBirthday" class="col-5">
+                                    <input type="date" class="form-control">
+                                    <div id="info_mB" class="form-text text-end">出生年月日</div>
+                                </td>
+                            </tr>
+                            <tr >
+                                <th class="col-2">聯絡電話</th>
+                                <td id="memberPhone" class="col-5">
+                                    <input type="number" class="form-control">
+                                    <div id="info_mP" class="form-text text-end">不包含-等符號之家用8碼或手機10碼</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-2"></th>
+                                <td id="" class="col-5">
+                                    <a href="javascript:void(0)" class="btn btn-primary text-light" id="update">確認更新</a>
+                                    <a href="memberCenter.html" class="btn btn-warning text-light" id="update">取消</a>
+                                </td>
+                                
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/cookie.js"></script>
+    <script src="js/all.js"></script>
+    <script>
+        let userAcount;
+        var fileImg;
+        let mN; //會員姓名
+        let mNN; //會員暱稱
+        let mE; //會員Email
+        let mB; //會員生日
+        let mP; //會員連絡電話
+        let info_mN; //監聽會員姓名信息
+        let info_mNN; //監聽會員暱稱信息
+        let info_mE; //監聽會員Email信息
+        let info_mB; //監聽會員生日信息
+        let info_mP; //監聽會員連絡電話信息
+
+        let tf_mN = true;
+        let tf_mNN = true;
+        let tf_mE = true;
+        let tf_mB = true;
+        let tf_mP = true;
+        $(function(){
+            mN = $("#memberName input"); //會員姓名
+            mNN = $("#memberNickName input"); //會員暱稱
+            mE = $("#memberEmail input"); //會員Email
+            mB = $("#memberBirthday input"); //會員生日
+            mP = $("#memberPhone input"); //會員連絡電話
+            info_mN = $("#info_mN"); //監聽會員姓名信息
+            info_mNN = $("#info_mNN"); //監聽會員暱稱信息
+            info_mE = $("#info_mE"); //監聽會員Email信息
+            info_mB = $("#info_mB"); //監聽會員生日信息
+            info_mP = $("#info_mP"); //監聽會員連絡電話信息
+            //監聽會員姓名是否符合字數 ------------start
+            mN.bind("input propertychang", function () {
+                if (mN.val().length >= 2 && mN.val().length <= 8) {
+                    tf_mN = true;
+                    info_mN.text("√,Ok!!");
+                    inputistrue(mN,info_mN);
+                } else {
+                    tf_mN = false;
+                    info_mN.text("會員姓名請輸入2~8字");
+                    inputisfalse(mN,info_mN);
+                }
+            });
+            //監聽會員姓名是否符合字數 ------------end
+            //監聽會員暱稱是否符合字數 ------------start
+            mNN.bind("input propertychang", function () {
+                if (mNN.val().length >= 2 && mNN.val().length <= 16) {
+                    tf_mNN = true;
+                    info_mNN.text("√,Ok!!");
+                    inputistrue(mNN,info_mNN);
+                } else {
+                    tf_mNN = false;
+                    info_mNN.text("會員暱稱請輸入2~16字");
+                    inputisfalse(mNN,info_mNN);
+                }
+            });
+            //監聽會員暱稱是否符合字數 ------------end
+            // cookie-是否登入過-------start
+            // 監聽e-mail驗證 ------------start
+            mE.bind("input propertychange", function () {
+                $emailchecking = isEmail(mE.val());
+                if ($emailchecking == false) {
+                    tf_mE = false;
+                    info_mE.text("!!請輸入email正確格式");
+                    inputisfalse(mE,info_mE);
+                } else {
+                    tf_mE = true;
+                    info_mE.text("√,Ok!!");
+                    inputistrue(mE,info_mE);
+                }
+            });
+            // 監聽e-mail驗證 ------------end//出生年月日 確認是否有值 ------------start
+            mB.bind("input propertychang", function () {
+                if (mB.val().length > 0) {
+                    tf_mB = true;
+                    info_mB.text("√,Ok!!");
+                    inputistrue(mB,info_mB);
+                } else {
+                    tf_mB = false;
+                    info_mB.text("請輸入出生年-月-日");
+                    inputisfalse(mB,info_mB);
+                }
+            });
+            // 出生年月日 確認是否有值 ------------end
+            // 監聽會員phone是否符合字數 ------------start
+            mP.bind("input propertychang", function () {
+                if (mP.val().length >= 8 && mP.val().length <= 10) {
+                    tf_mP = true;
+                    info_mP.text("√,Ok!!");
+                    inputistrue(mP,info_mP);
+                } else {
+                    tf_mP = false;
+                    info_mP.text("請輸入不包含-等符號之家用8碼或手機10碼");
+                    inputisfalse(mP,info_mP);
+                }
+            });
+            // 監聽會員phone是否符合字數 ------------end
+            // cookie監聽是否登入過 -------------start
+            if (getCookie("uid") != "") {
+                //uid存在
+                $.ajax({
+                    type: "POST",
+                    url: url + "member/member_r_api.php",
+                    data: {
+                        uid: getCookie("uid"),
+                    },
+                    dataType: "json",
+                    success: show_mem_data,
+                    error: function () {
+                        alert("錯誤，member_r_api.php");
+                    } 
+                })
+            }else{
+                location.href = "index.html";
+            }
+            // cookie監聽是否登入過 ------------- end
+            //會員圖片變更監視 ------------ start
+            $("#photo").change(function(){
+                console.log("test");
+                console.log(photo); //顯示標籤
+                console.log(photo.files[0]); //顯示標籤陣列
+                console.log(photo.files[0].name); //
+                console.log(photo.files[0].type); //
+                console.log(photo.files[0].size); //
+                console.log(URL.createObjectURL(photo.files[0])); //轉成前端路徑(在送到後端前，製作成確認送出的圖片預覽圖)
+                fileImg = photo.files[0];                
+                if(photo.files[0].type == 'image/png' || photo.files[0].type == 'image/jpeg'){
+                    $("#memberPhoto").attr("src", "");
+                    $("#memberPhoto").attr("src",URL.createObjectURL(photo.files[0]));
+                }else{
+                    Swal.fire('僅支援jpeg或png格式圖片!請重新上傳!!');
+                    // alert("僅支援jpeg或png格式圖片!請重新上傳!!");
+                }
+            })
+            //會員圖片變更監視 ------------ end
+
+            $("#update").click(function(){
+                // console.log(userAcount);
+                // console.log($("#memberName input").val());
+                // console.log($("#memberNickName input").val());
+                // console.log($("#memberEmail input").val());
+                // console.log($("#memberBirthday input").val());
+                // console.log($("#memberPhone input").val())
+                uploadFile();
+                if (tf_mN && tf_mNN && tf_mE && tf_mB && tf_mP ){
+                    $.ajax({
+                        type: "POST",
+                        url: url + "member/mem_u_api.php",
+                        data: {
+                            userAcount: userAcount, 
+                            userName: $("#memberName input").val(),
+                            nickname: $("#memberNickName input").val(), 
+                            email: $("#memberEmail input").val(), 
+                            birthday: $("#memberBirthday input").val(), 
+                            phone: $("#memberPhone input").val(),
+                        },
+                        dataType: "json",
+                        success: showdata_update,
+                        error: function(){
+                            alert("錯誤-mem_u_api.php")
+                        },
+                    });
+                    
+                } else if (!tf_mN) {
+                    alert("會員姓名欄位錯誤");
+                    inputWarn(tf_mN);
+                } else if (!tf_mNN) {
+                    alert("會員暱稱欄位錯誤");
+                    inputWarn(tf_mNN);
+                } else if (!tf_mE) {
+                    alert("會員email欄位錯誤");
+                    inputWarn(info_mE);
+                } else if (!tf_mB) {
+                    alert("會員出生年月日欄位錯誤");
+                    inputWarn(tf_mB);
+                } else if (!tf_mP) {
+                    alert("會員電話欄位錯誤");
+                    inputWarn(tf_mP);
+                }
+                
+            });
+        })
+        //email 格式驗證 ------------ start
+        function isEmail(email) {
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!regex.test(email)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        //email 格式驗證 ------------ end
+        function show_mem_data(data){
+            console.log(data);
+            if (data.state){
+                console.log(data);
+                //會員照片
+                if (data.data[0].Photo == "" || data.data[0].Photo == null ){
+                    $("#memberPhoto").attr("src","images/member_icon.svg");
+                    $("#memberPhoto").css("background-color","aquamarine");
+                } else {
+                    $("#memberPhoto").attr("src", "upload/photo/" +data.data[0].Photo);
+                }
+                //會員帳戶
+                userAcount = data.data[0].UserAcount;
+                $("#memberAcount").text(data.data[0].UserAcount)
+                //會員姓名
+                $("#memberName input").val(data.data[0].Username);
+                //會員暱稱
+                $("#memberNickName input").val(data.data[0].Nickname);
+                //會員email
+                $("#memberEmail input").val(data.data[0].Email);
+                //會員出生年月日
+                $("#memberBirthday input").val(data.data[0].Birthday);
+                //會員電話
+                $("#memberPhone input").val(data.data[0].Phone);
+            } else {
+                console.log(data);
+            }
+        }
+        
+        function uploadFile(){
+            console.log(userAcount);
+            // //轉換格式 符合$_FILE需求; 利用FormData()
+            var formData = new FormData();  //FormData是一種格式
+            formData.append('file', fileImg);
+            formData.append('userAcount', userAcount); //將id加到 formData中送到後端
+            console.log(formData);
+            console.log(fileImg);
+            console.log(photo.files[0]);
+
+            //將收集完成的資料formData 傳遞至api
+            $.ajax({
+                type: "POST",
+                url: url + "member/upload_file_img_api.php",
+                data: formData,
+                dataType: "json",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: showdata_uploadFile,
+                error: function(){
+                    alert("錯誤，upload_file_img_api.php");
+                }
+            })
+        }
+        function showdata_uploadFile(data){
+            console.log(data);
+            if (data.state){
+                console.log(data.message);
+                location.href = "memberCenter.html";
+            } else {
+                console.log(data.message);
+            }
+        }
+        function showdata_update(data){
+            console.log(data);
+            if (data.state){
+                alert(data.message);
+                location.href = "memberCenter.html";
+            } else {
+                alert(data.message);
+            }
+        }
+        function inputistrue(tag,info){
+            info.removeClass("text-danger");
+            info.addClass("text-success");
+            tag.removeClass("border-danger");
+            tag.removeClass("border-3");
+        }
+        function inputisfalse(tag,info) {
+            info.removeClass("text-success");
+            info.addClass("text-danger");
+            inputWarn(tag);
+        }
+        function inputWarn(tag){
+            tag.addClass("border-danger");
+            tag.addClass("border-3");
+        }
+
+    </script>
+</body>
+</html>

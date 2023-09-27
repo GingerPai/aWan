@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>阿万壽司</title>
+        <link rel="shortcut icon" href="favicon.png" />
+        <link rel="stylesheet" href="js/owlcarousel/assets/owl.carousel.min.css" />
+        <link rel="stylesheet" href="js/owlcarousel/assets/owl.theme.default.min.css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/sweetalert2.min.css">
+        <link rel="stylesheet" href="css/all.min.css" />
+        <link rel="stylesheet" href="css/webcolor.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/page.css">
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div class="nav">
+            <div class="container-md my-md-2">
+                <div class="navRow">
+                    <a href="index.html" class="navbar-brand">
+                        <img id="nav-logo" src="images/A_WAN_log.png" alt="">
+                    </a>
+                    <div class="" id="navbarNav">
+                        <ul class="navMenu" id="">
+                            <li class="nav-item me-1">
+                                <a class="nav-link" href="index.html/#news">最新消息</a>
+                            </li>
+                            <li class="nav-item me-1">
+                                <a class="nav-link" href="index.html/#product">阿万產品</a>
+                            </li>
+                            <li class="nav-item me-1">
+                                <a class="nav-link" href="index.html/#chef">店家介紹</a>
+                            </li>
+                            <li class="nav-item me-1">
+                                <a class="nav-link" href="index.html/#form">聯絡我們</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="navFunction">
+                        <a href="shoppingCar.html" id="shoppingCar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        <a href="" class="btn btn-outline-dark"  data-bs-toggle="modal" data-bs-target="#loginModal" id="openloginModal">登入</a>
+                        <div id="member" class="d-none">
+                            <img src="images/member_icon.svg" alt="">
+                            
+                            <ul id="memberMenu" class="d-none">
+                                <li><a href="memberCenter.html" id="toMemberCenter"><p>會員中心</p></a></li>
+                                <li><a href="javascript:void(0)" id="logout"><p>登出</p></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <h1 class="titleH1">註冊中心</h1>
+                <div class="col-md-6 m-auto mt-5">
+                    <div class="mb-3">
+                        <label for="userAcount">帳號設定</label>
+                        <input type="texxt" id="userAcount" name="userAcount" class="form-control" placeholder="請設定您的帳號">
+                        <div id="info_userAcount" class="form-text text-end">請輸入英文或數字3~12字設定</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password">設定密碼</label>
+                        <input type="password" id="passWord" name="password" class="form-control" placeholder="請輸入密碼"/>
+                        <div id="info_passWord" class="form-text text-end">請輸入英文或數字或符號符號.-@之8-12字密碼</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="checkPassWord">確認密碼</label>
+                        <input type="password"  id="checkPassWord" class="form-control" placeholder="重新輸入密碼"/>
+                        <div class="form-text text-end" id="info_checkPassWord">請再次輸入密碼</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="userName">會員姓名</label>
+                        <input type="text" id="userName" name="username" class="form-control"  placeholder="請輸入您的姓名"/>
+                        <div id="info_userName" class="form-text text-end">會員姓名請輸入2~8字</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">暱稱</label>
+                        <input type="text" id="nickname" name="nickname" class="form-control" placeholder="輸入暱稱"/>
+                        <div id="info_nickname" class="form-text text-end">會員
+                            暱稱請輸入2~16字</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">E-mail</label>
+                        <input type="text" id="email" name="email" class="form-control" placeholder="請輸入您的email"/>
+                        <div id="info_email" class="form-text text-end">請輸入email</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">出生年月日</label>
+                        <input type="date" id="birthday" name="birthday" class="form-control" placeholder="請輸入年-月-日"/>
+                        <div id="info_birthday" class="form-text text-end">請輸入出生年月日</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">電話號碼</label>
+                        <input type="number" id="phone" name="phone" class="form-control" placeholder="請輸入連絡電話"/>
+                        <div id="info_phone" class="form-text text-end">不包含-等符號之家用8碼或手機10碼</div>
+                    </div>
+                    <div class="form-coeck mb-3">
+                        <input type="checkbox" name="addMemberCheck" id="addMemberCheck" class="form-check-input is-invalid"/>
+                        <label for="addMemberCheck" class="form-check-label">同意遵守會員守則</label>
+                        <div class="valid-feedback">您已同意遵守相關規定</div>
+                        <div class="invalid-feedback">必須先同意遵守規定，才能加入會員。</div>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <button id="addMember" type="button" class="btn btn-dark m-auto" style="width: 100px;">確認</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-3.7.0.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/owlcarousel/owl.carousel.js"></script>
+        <script src="js/sweetalert2.all.min.js"></script>
+        <script src="js/url.js"></script>
+        <script src="js/cookie.js"></script>
+        <script src="js/all.js"></script>
+        <script>
+            let tf_regCheck = false; //確認遵守會員守則
+            let tf_UA = false; //帳號
+            let tf_PW = false; //密碼
+            let tf_UN = false; //會員姓名
+            let tf_NN = false; //會員暱稱
+            let tf_email = false; //會員email
+            let tf_birthday = false; //會員生日
+            let tf_phone = false; //會員電話
+
+
+            let uA; //帳號
+            let info_UA;
+            let pw; //密碼
+            let info_pw;
+            let cpw; //確認密碼
+            let info_cpw;
+            let uN; //會員姓名
+            let info_uN;
+            let nN; //會員暱稱
+            let info_nN;
+            let email; //會員email
+            let info_email;
+            let birthday; //會員生日
+            let info_birthday;
+            let phone; //會員電話
+            let info_phone; 
+
+
+
+            $(function () {
+                    uA = $("#userAcount"); //帳號
+                    info_UA = $("#info_userAcount");
+                    pw = $("#passWord"); //密碼
+                    info_pw = $("#info_passWord");
+                    cpw = $("#checkPassWord"); //確認密碼
+                    info_cpw = $("#info_checkPassWord");
+                    uN = $("#userName"); //會員姓名
+                    info_uN = $("#info_userName");
+                    nN = $("#nickname"); //會員暱稱
+                    info_nN = $("#info_nickname");
+                    email = $("#email"); //會員email
+                    info_email = $("#info_email");
+                    birthday = $("#birthday"); //會員生日
+                    info_birthday = $("#info_birthday");
+                    phone = $("#phone"); //會員電話
+                    info_phone = $("#info_phone");
+
+                    // 同意遵守會員守則---------- start
+                    $("#addMemberCheck").change(function () {
+                        if ($(this).is(":checked")) {
+                        tf_regCheck = true;
+                        $(this).removeClass("is-invalid");
+                        $(this).addClass("is-valid");
+                        } else {
+                        tf_regCheck = false;
+                        $(this).removeClass("is-valid");
+                        $(this).addClass("is-invalid");
+                        }
+                    });
+                    // 同意遵守會員守則---------- end
+                    // 會員帳號設定---------- start
+                    uA.bind("input propertychang", function () {
+                        checkEngNum(uA);
+                        if (uA.val().length >= 3 && uA.val().length <= 12) {
+                        $.ajax({
+                            type: "POST",
+                            url: url + "member/reg_check_uni_api.php",
+                            data: {
+                            userAcount: uA.val(),
+                            },
+                            dataType: "json",
+                            async: false,
+                            success: showdata_check_uni,
+                            error: function () {
+                            alert("API回傳錯誤reg_check_uni_api.php");
+                            },
+                        });
+                        } else {
+                        tf_UA = false;
+                        inputisfalse(uA, info_UA);
+                        info_UA.text("請輸入3~12字英數設定");
+                        }
+                    });
+                    //會員帳號設定---------- end
+                    //監聽密碼設定 ------------start
+                    pw.bind("input propertychang", function () {
+                        checkpassword(pw);
+                        if (pw.val().length >= 8 && pw.val().length <= 12) {
+                        tf_PW = false;
+                        info_pw.text("√,Ok!!");
+                        inputistrue(pw, info_pw);
+                        } else {
+                        tf_PW = false;
+                        info_pw.text("請輸入英文或數字或符號符號.-@之8-12字密碼");
+                        inputisfalse(pw, info_pw);
+                        }
+                    });
+                    //監聽密碼設定 ------------end
+                    // 監聽-確認密碼 ------------start
+                    cpw.bind("input propertychang", function () {
+                        if (pw.val() == cpw.val()) {
+                        tf_PW = true;
+                        info_cpw.text("√,Ok!!");
+                        inputistrue(pw, info_pw);
+                        inputistrue(cpw, info_cpw);
+                        } else {
+                        tf_PW = false;
+                        info_cpw.text("請輸入與上方密碼相同內容");
+                        inputisfalse(cpw, info_cpw);
+                        }
+                    });
+                    // 監聽-確認密碼 ------------end
+                    //監聽會員姓名是否符合字數 ------------start
+                    uN.bind("input propertychang", function () {
+                        if (uN.val().length >= 2 && uN.val().length <= 8) {
+                        tf_UN = true;
+                        info_uN.text("√,Ok!!");
+                        inputistrue(uN, info_uN);
+                        } else {
+                        tf_UN = false;
+                        info_uN.text("會員姓名請輸入2~8字");
+                        inputisfalse(uN, info_uN);
+                        }
+                    });
+                    //監聽會員姓名是否符合字數 ------------end
+                    //監聽會員暱稱是否符合字數 ------------start
+                    nN.bind("input propertychang", function () {
+                        if (nN.val().length >= 2 && nN.val().length <= 16) {
+                        tf_NN = true;
+                        info_nN.text("√,Ok!!");
+                        inputistrue(nN, info_nN);
+                        } else {
+                        tf_NN = false;
+                        info_nN.text("會員暱稱請輸入2~16字");
+                        inputisfalse(nN, info_nN);
+                        }
+                    });
+                    //監聽會員暱稱是否符合字數 ------------end
+                    // 監聽e-mail驗證 ------------start
+                    email.bind("input propertychange", function () {
+                        $emailchecking = isEmail($("#email").val());
+                        if ($emailchecking == false) {
+                        tf_email = false;
+                        info_email.text("!!請輸入email正確格式");
+                        inputisfalse(email, info_email);
+                        } else {
+                        tf_email = true;
+                        info_email.text("√,Ok!!");
+                        inputistrue(email, info_email);
+                        }
+                    });
+                    // 監聽e-mail驗證 ------------end
+                    //出生年月日 確認是否有值 ------------start
+                    birthday.bind("input propertychang", function () {
+                        if (birthday.val().length > 0) {
+                        tf_birthday = true;
+                        info_birthday.text("√,Ok!!");
+                        inputistrue(birthday, info_birthday);
+                        } else {
+                        tf_birthday = false;
+                        info_birthday.text("請輸入出生年-月-日");
+                        inputisfalse(birthday, info_birthday);
+                        }
+                    });
+                    // 出生年月日 確認是否有值 ------------end
+                    // 監聽會員phone是否符合字數 ------------start
+                    phone.bind("input propertychang", function () {
+                        if (phone.val().length >= 8 && phone.val().length <= 10) {
+                        tf_phone = true;
+                        phone.text("√,Ok!!");
+                        inputistrue(phone, info_phone);
+                        } else {
+                        tf_phone = false;
+                        phone.text("請輸入不包含-等符號之家用8碼或手機10碼");
+                        inputisfalse(phone, info_phone);
+                        }
+                    });
+                    // 監聽會員phone是否符合字數 ------------end
+                    //申請會員------------start
+                    $("#addMember").click(function () {
+                        if (
+                        tf_regCheck &&
+                        tf_UA &&
+                        tf_PW &&
+                        tf_UN &&
+                        tf_NN &&
+                        tf_email &&
+                        tf_birthday &&
+                        tf_phone
+                        ) {
+                        $.ajax({
+                            type: "POST",
+                            url: url + "member/reg_api.php",
+                            dataType: "json",
+                            data: {
+                            userAcount: uA.val(),
+                            password: pw.val(),
+                            username: uN.val(),
+                            nickname: nN.val(),
+                            email: email.val(),
+                            birthday: birthday.val(),
+                            phone: phone.val(),
+                            },
+                            success: showdata_reg,
+                            error: function () {
+                            alert("錯誤-申請帳號有誤reg_api.php");
+                            },
+                        });
+
+                        $("#registerModel").modal("hide");
+                        $("#loginModal").modal("show");
+                        $("#openloginModal").addClass("d-none");
+                        $("#member").removeClass("d-none");
+                        // location.href = "";
+                        } else if (!tf_regCheck) {
+                        alert("尚未勾選遵守會員守則");
+                        } else if (!tf_UA) {
+                        alert("會員帳號錯誤");
+                        inputWarn(uA);
+                        } else if (!tf_PW) {
+                        alert("會員密碼錯誤");
+                        inputWarn(pw);
+                        inputWarn(cpw);
+                        } else if (!tf_UN) {
+                        alert("會員姓名錯誤");
+                        inputWarn(uN);
+                        } else if (!tf_NN) {
+                        alert("會員暱稱錯誤");
+                        inputWarn(nN);
+                        } else if (!tf_email) {
+                        alert("會員email錯誤");
+                        inputWarn(email);
+                        } else if (!tf_birthday) {
+                        alert("會員生日錯誤");
+                        inputWarn(birthday);
+                        } else if (!tf_phone) {
+                        alert("會員電話錯誤");
+                        inputWarn(phone);
+                        }
+                    });
+                    //申請會員------------end
+                });
+                function inputistrue(tag,info){
+                    info.removeClass("text-danger");
+                    info.addClass("text-success");
+                    tag.removeClass("border-danger");
+                    tag.removeClass("border-3");
+                    tag.removeClass("is-invalid");
+                    tag.addClass("is-valid");
+                }
+                function inputisfalse(tag,info) {
+                    info.removeClass("text-success");
+                    info.addClass("text-danger");
+                    inputWarn(tag)
+                    tag.removeClass("is-valid");
+                    tag.addClass("is-invalid");
+                }
+                function inputWarn(tag){
+                    tag.addClass("border-danger");
+                    tag.addClass("border-3");
+                }
+
+                //會員帳號僅能輸入英文大小寫及數字和符號.-@ ------------ start
+                function checkEngNum(tag) {
+                    value = tag.val();
+                    value = value.replace(/[^A-Za-z0-9]/g, "");
+                    tag.val(value);
+                }
+                function checkpassword(tag) {
+                    value = tag.val();
+                    value = value.replace(/[^A-Za-z0-9\.\-\@]/g, "");
+                    tag.val(value);
+                }
+                //會員帳號僅能輸入英文大小寫及數字和符號.-@ ------------ end
+                //僅能輸入數字 ------------ start
+                    function onlyNum(tag) {
+                    value = tag.val();
+                    value = value.replace(/[^0-9]/g, "");
+                    tag.val(value);
+                }
+                //僅能輸入數字 ------------ end
+                //email 格式驗證 ------------ start
+                function isEmail(email) {
+                    var regex =
+                        /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                    if (!regex.test(email)) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+                //email 格式驗證 ------------ end
+
+
+                // ajax回傳會員帳號是否有人使用
+                function showdata_check_uni(data) {
+                    if (data.state) {
+                        tf_UA = true;
+                        info_UA.text(data.message);
+                        inputistrue(uA, info_UA);
+                    } else {
+                        tf_UA = false;
+                        info_UA.text(data.message);
+                        inputisfalse(uA, info_UA);
+                    }
+                }
+                //申請會員
+                function showdata_reg(data){
+                    setCookie('uid', data.data, 7);
+                    if (data.state) {
+                        location.href = "index.html";
+                        $("#registerModel").modal("hide");
+                        $("#openloginModal").addClass("d-none");
+                        $("#member").removeClass("d-none");
+                    }else{
+                        // alert(data.message);
+                    }
+                }
+
+
+
+
+                $(function(){
+                // 判斷是否登入過---------------------------------start
+                //確認uid是否存在，若存在傳遞至後端check_uid_api.php確認是否合法
+                if (getCookie("uid") != "") {
+                    //uid存在
+                    $.ajax({
+                        type: "POST",
+                        url: url + "member/check_uid_api.php",
+                        dataType: "json",
+                        data: {
+                        uid: getCookie("uid"),
+                        },
+                        success: showdata_check_uid,
+                        error: function () {
+                        alert("錯誤check_uid_api.php ");
+                        },
+                    });
+                }
+                // 判斷是否登入過---------------------------------end
+                
+                // 會員登入 ----------------------------start
+                $("#login").click(function () {
+                    $.ajax({
+                    type: "POST",
+                    url: url + "member/login_api.php",
+                    dataType: "json",
+                    data: {
+                        memberAcount: $("#memberAcount").val(),
+                        password: $("#memberPassword").val(),
+                    },
+                    success: showdata_login,
+                    error: function () {
+                        alert("登入錯誤, /web202308/moz/php/login_api.php");
+                    },
+                    });
+                });
+            // 會員登入 ----------------------------end
+            })
+
+
+
+
+            function showdata_login(data) {
+                console.log(data);
+                // 如果回傳回來的json欄位state為true則重整畫面將欄位清空
+                if (data.state) {
+                    if(data.data[0].UserState == "true"){
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: data.message + "! " + data.data[0].Nickname + "歡迎登入",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+                    //存入cookie
+                    setCookie('uid', data.data[0].Uid, 7);
+                    $("#loginModal").modal("hide");
+                    $("#openloginModal").addClass("d-none");
+                    $("#member").removeClass("d-none");
+                    }else{
+                    alert("此帳號被停權請聯絡管理員");
+                    }
+
+                } else {
+                    alert(data.message);
+                }
+            }
+
+
+            function showdata_check_uid(data){
+                console.log(data);
+                if (data.state){
+                    //驗證成功，顯示已登入狀態
+                    // alert(data.message);
+                    $("#openloginModal").addClass("d-none");
+                    $("#member").removeClass("d-none");
+                }else{
+                    //驗證失敗登入
+                    // alert(data.message);
+                    $("#member").addClass("d-none");
+                    $("#login").removeClass("d-none");
+                }
+            }
+
+        </script>
+    </body>
+</html>

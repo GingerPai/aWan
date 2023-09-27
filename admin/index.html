@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awan Admin</title>
+    <link rel="shortcut icon" href="../favicon.png"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/sweetalert2.min.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            padding-top: 100px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: table;
+            padding: 20px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>阿万壽司管理系統</h1>
+        <form action="#" class="border border-success border-2 rounded-2">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <label for="adminID" class="form-label">管理員帳號</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" id="adminID" name="adminID" class="form-control border-success">
+              </div>
+            </div>
+            <div class="row align-items-center mt-3 mb-3">
+              <div class="col-auto">
+                <label for="password" class="form-label">管理員密碼</label>
+              </div>
+              <div class="col-auto">
+                <input type="password" id="password" name="password" class="form-control border-success">
+              </div>
+            </div>
+            <div class="row align-items-center justify-content-center mt-3 mb-3">
+              <div class="col-auto">
+                <button type="submit" class="btn btn-primary" id="login">確認</button>
+              </div>
+            </div>
+          </form>
+    </div>
+    <script src="../js/jquery-3.7.0.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/sweetalert2.all.min.js"></script>
+    <script src="../js/url.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script>
+      $(function(){
+        // 判斷是否登入過---------------------------------start
+        // 驗證管理員是否為登入狀態，如登入狀態執行登入帶入資料，若無跳回首頁
+        if (getCookie("uid_a") != "") {
+            // uid存在
+            // 讀取會員資料
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: url + "admin/check_uid_a_api.php",
+                data: {
+                    uid_a: getCookie("uid_a"),
+                },
+                async: false,
+                success: show_memberdata,
+                error: function () {
+                    alert("資料回傳資料錯誤-admin/check_uid_a_api.php");
+                }
+            })
+        }else{
+            // location.href = "index.html";
+        }
+        // 判斷是否登入過---------------------------------end
+        // 登入------------------------------------------- start
+        $("#login").click(function(){
+          let adminID = $("#adminID").val();
+          let password = $("#password").val();
+          // console.log(adminID);
+          // console.log(password);
+          $.ajax({
+            type: "POST",
+            url: url + "admin/login_a_api.php",
+            dataType: "json",
+            data: {
+              adminID: adminID,
+              password: password,
+            },
+            // async: false,
+            success: adminlogin,
+            error: function (){
+              alert("API回傳錯誤-admin/login_a_api.php");
+            }
+          })
+        })
+        // 登入------------------------------------------- end
+      })
+      
+      function show_memberdata(data){
+        if(data.data[0].State == "true"){
+          location.href = "controlCenter.html";
+        }else{
+          //管理員停權中
+          Swal.fire({
+              position: "center",
+              title: "停權中，請洽管理員。",
+              showConfirmButton: false,
+              timer: 3000,
+          });
+        }
+
+      }
+      function adminlogin(data){
+        // console.log(data);
+        if (data.state){
+          // alert(data.message);
+          // alert("State: " + data.data[0].State);
+          //具管理員身分
+          if(data.data[0].State == "true"){
+            // console.log("UidA:" + data.data[0].UidA);
+            // alert("具管理員權限")
+            setCookie('uid_a', data.data[0].UidA, 7);
+            Swal.fire({
+              position: "center",
+              title: data.message,
+              showConfirmButton: false,
+              timer: 3000,
+            });
+            location.href = "controlCenter.html";
+          }else{
+            //管理員停權中
+            Swal.fire({
+                position: "center",
+                title: "停權中，請洽管理員。",
+                showConfirmButton: false,
+                timer: 3000,
+            });
+          }
+        } else {
+          //登入失敗
+          Swal.fire({
+              position: "center",
+              title: data.message,
+              showConfirmButton: false,
+              timer: 3000,
+          });
+        }
+      }
+    </script>
+</body>
+</html>
