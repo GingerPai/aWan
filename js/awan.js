@@ -13,13 +13,13 @@ $(function () {
     dots: false,
     responsive: {
       0: {
-        items: 5, // 在較小的螢幕上顯示一個項目
+        items: 4.5, // 在較小的螢幕上顯示一個項目
       },
       414: {
-        items: 6, // 在較大的螢幕上顯示兩個項目
+        items: 5.5, // 在較大的螢幕上顯示兩個項目
       },
       575: {
-        items: 7, // 在較大的螢幕上顯示兩個項目
+        items: 5.5, // 在較大的螢幕上顯示兩個項目
       },
       768: {
         items: 8, // 在較大的螢幕上顯示兩個項目
@@ -62,16 +62,16 @@ $(function () {
     dots: false,
     responsive: {
       0: {
-        items: 1, // 在較小的螢幕上顯示一個項目
+        items: 1.1, // 在較小的螢幕上顯示一個項目
       },
       414: {
-        items: 1, // 在較大的螢幕上顯示兩個項目
+        items: 1.2, // 在較大的螢幕上顯示兩個項目
       },
       575: {
-        items: 2, // 在較大的螢幕上顯示兩個項目
+        items: 2.2, // 在較大的螢幕上顯示兩個項目
       },
       768: {
-        items: 2.8, // 在較大的螢幕上顯示兩個項目
+        items: 2.2, // 在較大的螢幕上顯示兩個項目
       },
       992: {
         items: 2.8, // 在更大的螢幕上顯示三個項目
@@ -530,7 +530,9 @@ $(function(){
       },
       success: showdata_login,
       error: function () {
-        alert("登入錯誤, /web202308/moz/php/login_api.php");
+        alert(
+          "api/登入錯誤, api/member/login_api.php"
+        );
       },
     });
   });
