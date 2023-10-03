@@ -12,10 +12,59 @@
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/webcolor.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobNav.css">
 </head>
 <body>
     <div class="nav">
-        <div class="container-md my-md-2">
+        <!-- Mobile Navbar -->
+        <div id="mobnav" class="d-sm-none">
+            <div id="mobNavMain">
+                <div id="mobNavMainLeft">
+                    <a href="index.html" class="navbar-brand">
+                        <img id="mobnav-logo" src="images/A_WAN_log.png" alt="">
+                    </a>
+                </div>
+                <div id="mobNavMainRight">
+                    <a href="shoppingCar.html" id="MobShoppingCar">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                    <div id="mobMenuIcon" class="openMenu">
+                        <div class="mobMenuIconComp"></div>
+                        <div class="mobMenuIconComp"></div>
+                        <div class="mobMenuIconComp"></div>
+                        <div class="mobMenuIconComp"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="mobNavMenu">
+                <ul id="mobMenu">
+                    <li class="nav-item me-1">
+                        <a class="nav-link" href="#news">最新消息</a>
+                    </li>
+                    <li class="nav-item me-1">
+                        <a class="nav-link" href="#product">阿万產品</a>
+                    </li>
+                    <li class="nav-item me-1">
+                        <a class="nav-link" href="#chef">店家介紹</a>
+                    </li>
+                    <li class="nav-item me-1">
+                        <a class="nav-link" href="#form">聯絡我們</a>
+                    </li>
+                    <li id="isLoginHide" class="nav-item me-1 d-flex flex-row justify-content-center align-content-center">
+                        <a href="" class="nav-link" data-bs-toggle="modal" data-bs-target="#registerModel">註冊</a>
+                        <a href="" class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" >登入</a>
+                    </li>
+                    <li class="nav-item me-1 isLogoutHide d-none">
+                        <a class="nav-link" href="memberCenter.html" id="toMemberCenter">會員中心</a>
+                    </li>
+                    <li class="nav-item me-1 isLogoutHide d-none">
+                        <a class="nav-link" href="javascript:void(0)" id="logout">登出</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Desktop Nabbar -->
+        <div class="container-md my-md-2 d-none d-sm-block">
             <div class="navRow">
                 <a href="index.html" class="navbar-brand">
                     <img id="nav-logo" src="images/A_WAN_log.png" alt="">
@@ -64,65 +113,66 @@
             </div>
             <div class="modal-body">
                 <div class="row" id="checkContent">
-                <div class="col-md-6">
-                    <h3>阿万壽司會員守則</h3>
-                    <p>歡迎加入阿万壽司會員！為了享有會員優惠及入會禮，請遵守以下會員守則：</p>
-                    <ul>
-                        <li>1. 註冊會員時，請提供真實、準確的個人資訊，包括姓名、聯絡方式等，以便在需要時能夠順利取得購物相關訊息。</li>
-                        <li>2. 預約外帶餐點及預約座位請先登入會員。</li>
-                        <li>3. 加入會員，即享有入會禮(不得轉讓)。</li>
-                        <li>4. 請妥善保管您的會員帳號和密碼，避免將其提供給他人使用。</li>
-                    </ul>
-                    <div class="form-coeck">
-                        <input type="checkbox" name="addMemberCheck" id="addMemberCheck" class="form-check-input is-invalid"/>
-                        <label for="addMemberCheck" class="form-check-label">同意遵守會員守則</label>
-                        <div class="valid-feedback">您已同意遵守相關規定</div>
-                        <div class="invalid-feedback">必須先同意遵守規定，才能加入會員。</div>
+                    <div class="col-md-6 order-2
+                    ">
+                        <h3>阿万壽司會員守則</h3>
+                        <p>歡迎加入阿万壽司會員！為了享有會員優惠及入會禮，請遵守以下會員守則：</p>
+                        <ul>
+                            <li>1. 註冊會員時，請提供真實、準確的個人資訊，包括姓名、聯絡方式等，以便在需要時能夠順利取得購物相關訊息。</li>
+                            <li>2. 預約外帶餐點及預約座位請先登入會員。</li>
+                            <li>3. 加入會員，即享有入會禮(不得轉讓)。</li>
+                            <li>4. 請妥善保管您的會員帳號和密碼，避免將其提供給他人使用。</li>
+                        </ul>
+                        <div class="form-coeck">
+                            <input type="checkbox" name="addMemberCheck" id="addMemberCheck" class="form-check-input is-invalid"/>
+                            <label for="addMemberCheck" class="form-check-label">同意遵守會員守則</label>
+                            <div class="valid-feedback">您已同意遵守相關規定</div>
+                            <div class="invalid-feedback">必須先同意遵守規定，才能加入會員。</div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="userAcount">帳號設定</label>
-                        <input type="texxt" id="userAcount" name="userAcount" class="form-control" placeholder="請設定您的帳號">
-                        <div id="info_userAcount" class="form-text text-end">請輸入英文或數字3~12字設定</div>
+                    <div class="col-md-6 order-1">
+                        <div class="mb-3">
+                            <label for="userAcount">帳號設定</label>
+                            <input type="texxt" id="userAcount" name="userAcount" class="form-control" placeholder="請設定您的帳號">
+                            <div id="info_userAcount" class="form-text text-end">請輸入英文或數字3~12字設定</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password">設定密碼</label>
+                            <input type="password" id="passWord" name="password" class="form-control" placeholder="請輸入密碼"/>
+                            <div id="info_passWord" class="form-text text-end">請輸入英文或數字或符號符號.-@之8-12字密碼</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="checkPassWord">確認密碼</label>
+                            <input type="password"  id="checkPassWord" class="form-control" placeholder="重新輸入密碼"/>
+                            <div class="form-text text-end" id="info_checkPassWord">請再次輸入密碼</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userName">會員姓名</label>
+                            <input type="text" id="userName" name="username" class="form-control"  placeholder="請輸入您的姓名"/>
+                            <div id="info_userName" class="form-text text-end">會員姓名請輸入2~8字</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">暱稱</label>
+                            <input type="text" id="nickname" name="nickname" class="form-control" placeholder="輸入暱稱"/>
+                            <div id="info_nickname" class="form-text text-end">會員
+                                暱稱請輸入2~16字</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">E-mail</label>
+                            <input type="text" id="email" name="email" class="form-control" placeholder="請輸入您的email"/>
+                            <div id="info_email" class="form-text text-end">請輸入email</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">出生年月日</label>
+                            <input type="date" id="birthday" name="birthday" class="form-control" placeholder="請輸入年-月-日" min="1900-01-01"/>
+                            <div id="info_birthday" class="form-text text-end">請輸入出生年月日</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">電話號碼</label>
+                            <input type="number" id="phone" name="phone" class="form-control" placeholder="請輸入連絡電話"/>
+                            <div id="info_phone" class="form-text text-end">不包含-等符號之家用8碼或手機10碼</div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="password">設定密碼</label>
-                        <input type="password" id="passWord" name="password" class="form-control" placeholder="請輸入密碼"/>
-                        <div id="info_passWord" class="form-text text-end">請輸入英文或數字或符號符號.-@之8-12字密碼</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="checkPassWord">確認密碼</label>
-                        <input type="password"  id="checkPassWord" class="form-control" placeholder="重新輸入密碼"/>
-                        <div class="form-text text-end" id="info_checkPassWord">請再次輸入密碼</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="userName">會員姓名</label>
-                        <input type="text" id="userName" name="username" class="form-control"  placeholder="請輸入您的姓名"/>
-                        <div id="info_userName" class="form-text text-end">會員姓名請輸入2~8字</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="">暱稱</label>
-                        <input type="text" id="nickname" name="nickname" class="form-control" placeholder="輸入暱稱"/>
-                        <div id="info_nickname" class="form-text text-end">會員
-                            暱稱請輸入2~16字</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email">E-mail</label>
-                        <input type="text" id="email" name="email" class="form-control" placeholder="請輸入您的email"/>
-                        <div id="info_email" class="form-text text-end">請輸入email</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="">出生年月日</label>
-                        <input type="date" id="birthday" name="birthday" class="form-control" placeholder="請輸入年-月-日"/>
-                        <div id="info_birthday" class="form-text text-end">請輸入出生年月日</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="">電話號碼</label>
-                        <input type="number" id="phone" name="phone" class="form-control" placeholder="請輸入連絡電話"/>
-                        <div id="info_phone" class="form-text text-end">不包含-等符號之家用8碼或手機10碼</div>
-                    </div>
-                </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -148,7 +198,7 @@
                 </div>
                 <div class="mb-2 mb-md-3">
                     <label for="" class="form-label">會員密碼</label>
-                    <input type="text" class="form-control" name="memberPassword" id="memberPassword">
+                    <input type="password" class="form-control" name="memberPassword" id="memberPassword">
                 </div>
                 </div>
                 <div class="modal-footer d-flex flex-row justify-content-between">
@@ -163,23 +213,45 @@
     </div>
     <!-- Banner -->
     <section id="head">
-        <div id="carouselExample" class="carousel slide" data-bs-ride="true">
+        <div id="carouselExample" class="carousel slide d-none d-sm-block" data-bs-ride="true">
             <div class="carousel-inner">
                 <div class="carousel-item active">
+                    <img src="images/indexBanner-01.jpg" class="d-block w-100" alt="">
+                </div>
+                <!-- <div class="carousel-item">
                     <img src="images/indexBanner-01.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
                     <img src="images/indexBanner-01.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="images/indexBanner-01.jpg" class="d-block w-100" alt="...">
-                </div>
+                </div> -->
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <div id="carouselExampleFade" class="carousel slide carousel-fade d-sm-none">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/indexBanner_mob-01.jpg" class="d-block w-100" alt="">
+                </div>
+                <!-- <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                </div> -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -760,7 +832,7 @@
             </div>
         </div>
     </section>
-    
+    <!-- 服務內容 -->
     <section id="indro" class="container">
         <h2 class="text-center">服務內容</h2>
         <p>「阿万壽司」精心矚目服務細節，滿足您的不同需求。內用客人可在優雅環境中品味精湛日本料理，舒適座位與細緻服務，確保用餐體驗無懈可擊。<br>
@@ -768,6 +840,7 @@
         我們致力於為您呈現最周到貼心的服務，讓您在「阿万壽司」感受到真正的尊榮和滋味。</p>
     </section>
     <div class="side"></div>
+    <!-- 主廚介紹 -->
     <section id="chef" class="container-fluid">
         <div class="row flex-column-reverse flex-md-row">
             <div class="col-md-6 bg-cover" style=" background-image: url(images/bgi/主廚-01.jpg); height: 400px; " ></div>
@@ -788,6 +861,7 @@
         </div>
     </section>
     <div class="side"></div>
+    <!-- 聯絡我們 -->
     <section id="form" class="">
         <div class="container">
             <div class="row">
@@ -873,8 +947,30 @@
     <script src="js/all.js"></script>
     <script src="js/awan.js"></script>
     <script>
-        function goAdmin(){
-            location.href = "/admin/controlCenter.html";
+        $(function(){
+            $(document).on("click",".openMenu",function(){
+                $("#mobMenuIcon").addClass("active");
+                $("#mobMenuIcon").addClass("closeMenu");
+                $("#mobMenuIcon").removeClass("openMenu");
+                $("#mobNavMenu").css("top","100%")
+                $("#mobNavMenu").css("transform","translateY(-0%)")
+            })
+            $(document).on("click",".closeMenu",function(){
+                mobMenuHide();
+            })
+            $(document).on("click","#mobMenu .nav-item a.nav-link",function(){
+                $("html,body").animate({
+                    'scrollTop': $(this.hash).offset().top-50
+                },800);
+                mobMenuHide();
+            })
+        })
+        function mobMenuHide(){
+            $("#mobMenuIcon").removeClass("active");
+            $("#mobMenuIcon").removeClass("closeMenu");
+            $("#mobMenuIcon").addClass("openMenu");
+            $("#mobNavMenu").css("top","0%");
+            $("#mobNavMenu").css("transform","translateY(-100%)");
         }
     </script>
 </body>

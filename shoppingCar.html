@@ -407,6 +407,19 @@
             runList();
             $(location).prop("href", location.href);
         })
+
+        //Get today's date and the date seven days from now
+        const timestampsToday = new Date();
+        let mindate = timestampsToday.getFullYear() + "-" + (timestampsToday.getMonth() + 1).toString().padStart(2, '0') + "-" + timestampsToday.getDate().toString().padStart(2, '0');
+        console.log(mindate);
+
+        let afterSeven = new Date(timestampsToday);
+        afterSeven.setDate(timestampsToday.getDate() + 7);
+        afterSeven = afterSeven.getFullYear() + "-" + (afterSeven.getMonth() + 1).toString().padStart(2, '0') + "-" + afterSeven.getDate().toString().padStart(2, '0');
+        console.log(afterSeven);
+
+        $("#bookingdate").attr("min",mindate);
+        $("#bookingdate").attr("max",afterSeven);
         $("#bookingdate").bind("input propertychang", function(){
           console.log($(this).val());
           bookingdate = $(this).val();
@@ -419,6 +432,7 @@
           bookingtime = $(this).text();
           console.log(bookingtime);
         })
+        
         $("#conrirmBtn").click(function(){
           let createorder = false;  //紀錄訂單成立與否
           let createorderlist = false;  //紀錄訂單清單成立與否
