@@ -35,7 +35,7 @@ input[type="number"] {
 }
 .nav {
     box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     z-index: 2;
@@ -49,7 +49,6 @@ input[type="number"] {
     color: #000;
     text-decoration: underline;
 }
-
 h1,h2,h3,h4,h5,h6,p{
     margin: 0;
     padding: 0;
@@ -70,7 +69,7 @@ li {
 }
 #head {
     position: relative;
-    padding-top: 50px;
+    /* padding-top: 50px; */
 }
 #goTakeAwayAndBooking{
     background-color: rgba(255,255,255,0.8);
@@ -181,10 +180,12 @@ li {
     -ms-border-radius: 0px;
     -o-border-radius: 0px;
     padding: 40px;
+    padding-bottom: 10px;
     box-sizing: border-box;
 }
 .owl-carousel .owl-item {
    margin: 10px;
+   padding-top: 20px;
    /* padding: 10px; */
 }
 .owl-stage {
@@ -392,6 +393,7 @@ li {
     color: #fff;
     font-size: 30px;
     line-height: 30px;
+    border: 1px solid #132C14;
 }
 .count {
     width: 60px;
@@ -519,6 +521,22 @@ h2 {
     th, td {
         font-size: 14px;
     }
+    .nav {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    a.nav-link {
+        font-size: 16px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    #navFunction i {
+        font-size: 18px;
+    }
+    a#openloginModal {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
     .form-control {
         font-size: 14px;
     }
@@ -549,6 +567,14 @@ h2 {
     }
 }
 @media screen and (max-width: 575px){
+    .nav {
+        padding: 0;
+    }
+    a.nav-link {
+        font-size: 14px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
     #goTakeAwayAndBooking h3 {
         font-size: 20px;
     }
@@ -562,6 +588,7 @@ h2 {
         -moz-border-radius: 5px;
         -ms-border-radius: 5px;
         -o-border-radius: 5px;
+        z-index: 1;
     }
     #goTakeAwayAndBooking div {
         padding: 0px 10px;
