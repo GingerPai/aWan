@@ -148,6 +148,17 @@ let info_phone;
 
 
 $(function () {
+  //Get yesterday's date
+  let currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1);
+  currentDate =
+    currentDate.getFullYear() +
+    "-" +
+    (currentDate.getMonth() + 1).toString().padStart(2, "0") +
+    "-" +
+    currentDate.getDate().toString().padStart(2, "0");
+
+  $("#birthday").attr("max", currentDate);
   uA = $("#userAcount"); //帳號
   info_UA = $("#info_userAcount");
   pw = $("#passWord"); //密碼
@@ -361,11 +372,10 @@ $(function () {
   //申請會員------------end
   // 加入購物清單 -------------- start
   $(".productBtn").click(function () {
-
-    $("#shoppingCar").css("transform","scale(0.85)");
-    setTimeout(function(){
+    $("#shoppingCar").css("transform", "scale(0.85)");
+    setTimeout(function () {
       $("#shoppingCar").css("transform", "scale(1.0)");
-    },300)
+    }, 300);
     // 產品編號
     let productid = $(this).data("productid");
     // 產品名稱
@@ -413,8 +423,6 @@ $(function () {
     $(this).siblings(".orderArea").find(".count").val("1");
     var shopingorderlist = JSON.stringify(orderList);
     localStorage.setItem("shopping", shopingorderlist);
-
-    
   });
   // 加入購物清單 -------------- end
 });
@@ -490,6 +498,11 @@ function showdata_reg(data){
     $("#registerModel").modal("hide");
     $("#openloginModal").addClass("d-none");
     $("#member").removeClass("d-none");
+    // mobile Navbar login --- start
+    mobMenuHide();
+    $(".isLogoutHide").removeClass("d-none");
+    $("#isLoginHide").addClass("d-none");
+    // mobile Navbar login --- end
   }else{
     // alert(data.message);
   }
@@ -555,10 +568,15 @@ function showdata_login(data) {
         timer: 1000,
       });
       //存入cookie
-      setCookie('uid', data.data[0].Uid, 7);
+      setCookie("uid", data.data[0].Uid, 7);
       $("#loginModal").modal("hide");
       $("#openloginModal").addClass("d-none");
       $("#member").removeClass("d-none");
+      // mobile Navbar login --- start
+      mobMenuHide();
+      $(".isLogoutHide").removeClass("d-none");
+      $("#isLoginHide").addClass("d-none");
+      // mobile Navbar login --- end
     }else{
       alert("此帳號被停權請聯絡管理員");
     }
@@ -576,6 +594,11 @@ function showdata_check_uid(data){
     // alert(data.message);
     $("#openloginModal").addClass("d-none");
     $("#member").removeClass("d-none");
+    // mobile Navbar login --- start
+    mobMenuHide();
+    $(".isLogoutHide").removeClass("d-none");
+    $("#isLoginHide").addClass("d-none");
+    // mobile Navbar login --- end
   }else{
     //驗證失敗登入
     // alert(data.message);
@@ -584,4 +607,10 @@ function showdata_check_uid(data){
   }
 }
 
- 
+function mobMenuHide() {
+  $("#mobMenuIcon").removeClass("active");
+  $("#mobMenuIcon").removeClass("closeMenu");
+  $("#mobMenuIcon").addClass("openMenu");
+  $("#mobNavMenu").css("top", "0%");
+  $("#mobNavMenu").css("transform", "translateY(-100%)");
+}

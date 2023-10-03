@@ -10,11 +10,22 @@ $(function () {
   $("#logout").click(function () {
     setCookie("uid", "", 7);
     $("#member").addClass("d-none");
+    // mobile Navbar out --- start
+    mobMenuHide();
+    $(".isLogoutHide").addClass("d-none");
+    $("#isLoginHide").removeClass("d-none");
+    // mobile Navbar out --- end
     orderList = []; //清空array
     localStorage.removeItem("shopping"); //刪除localStorage
     location.href = "index.html";
   });
   // 會員登出 ----------------------------end
   
-  
+  function mobMenuHide() {
+    $("#mobMenuIcon").removeClass("active");
+    $("#mobMenuIcon").removeClass("closeMenu");
+    $("#mobMenuIcon").addClass("openMenu");
+    $("#mobNavMenu").css("top", "0%");
+    $("#mobNavMenu").css("transform", "translateY(-100%)");
+  }
 });
