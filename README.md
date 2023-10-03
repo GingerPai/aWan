@@ -16,7 +16,7 @@
 .
 <h2><a href="https://docs.google.com/document/d/1hT8OUZ6Ijitg0pnuB5gzptYKvf8rxO2xz2slOPrW1Xc/edit?usp=sharing" style="text-align: center;">>>了解更多A-Wan阿万壽司網站開發介紹</a></h2>
 
-<h2><a href="[https://docs.google.com/document/d/1hT8OUZ6Ijitg0pnuB5gzptYKvf8rxO2xz2slOPrW1Xc/edit?usp=sharing](https://gingerpai899.000webhostapp.com/index.html)" style="text-align: center;">>>參觀A-Wan阿万壽司網站</a></h2>
+<h2><a href="https://gingerpai899.000webhostapp.com/index.html" style="text-align: center;">>>參觀A-Wan阿万壽司網站</a></h2>
 
 
 
