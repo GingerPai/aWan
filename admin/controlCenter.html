@@ -440,7 +440,7 @@
                             <h2 class="modal-title fs-5"><span id="couponUser"></span> 會員可使用之優惠券</h2>
                             <button type="button" class="btn-close showOrderDetailModal" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" id="userCouponTable">
                             <table class="table table-striped table-hover table-bordered table-rwd">
                                 <thead class="text-bg-dark text-center">
                                     <tr>
@@ -458,10 +458,10 @@
                                         <td data-couponn="CouponN">優惠代碼</td>
                                         <td data-couponname="CouponName">折扣名稱</td>
                                         <td data-details="Details">折扣說明</td>
-                                        <td data-discount="Discount">折扣金額</td>
-                                        <td data-islimit="IsLimit">折扣限制</td>
+                                        <!-- <td data-discount="Discount">折扣金額</td>
+                                        <td data-islimit="IsLimit">折扣限制</td> -->
                                         <td data-limitdetails="LimitDetails">折扣限制說明</td>
-                                        <td data-type="Type">折扣類型</td>
+                                        <!-- <td data-type="Type">折扣類型</td> -->
                                         <td><input type="radio" name="pickCoupon"><label for="">選擇</label></td>
                                     </tr>
                                 </tbody>
@@ -707,20 +707,28 @@
                 let thisOrderState = $(this).parents().siblings(".state").data("state");
                 let couponNum = "";
                 let couponAmount = 0;
+                //查詢已結帳訂單是否使用優惠券
                 orderAll.forEach(function(item){
-                    if(OrderNumber = item.OrderNumber){
-                        couponNum = item.CouponNum;
-                        couponAmount = item.CouponAmount;
+                    if(orderNumber == item.OrderNumber){
+                        if(item.PaymentStatus == "Paid"){
+                            // console.log(item.OrderNumber);
+                            // console.log(item.CouponNum);
+                            // console.log(item.CouponAmount);
+                            couponNum = item.CouponNum;
+                            couponAmount = parseInt(item.CouponAmount);
+                            $("#couponN").val("優惠券"+couponNum);
+                            console.log(couponAmount);
+                            $("#discount").text(couponAmount);
+                        }
                     }
                 });
+                console.log(userAcount);
                 $("#orderNumber").text(orderNumber);
                 $("#memberAcount").text(userAcount);
                 $("#bookingDate").text(bookingDate);
                 $("#bookingTime").text(bookingTime);
                 $("#orderSum").text(orderSum);
                 $("#orderState").text(thisOrderState);
-                $("#couponN").text(couponNum);
-                $("discount").text(couponAmount);
                 // let stateCode = $(this).parents().siblings(".state").data("statecode");
                 let statetitle = $(this).data("statetitle");
                 //訂單進度
@@ -756,7 +764,7 @@
                         }
                     },
                     error: function(){
-                        alert("錯誤-serchMemberNameTel_r_api")
+                        alert("錯誤-serchMemberNameTel_r_api");
                     }
                 })
                 // 查詢訂單訂購內容
@@ -1276,7 +1284,7 @@
 
             } else if (couponType == "F") {
                 let billtotal = parseInt($("#billtotal").text()); // 訂單合計金額
-                if (billtotal>limitamount){
+                if (billtotal>=limitamount){
                     calcDiscount = "-" + couponDiscount;
                 } else {
                     calcDiscount = 0;
@@ -1324,9 +1332,9 @@
                     data.data.forEach(function(item){
                         var switch01;
                         if(item.UserState == 'true' ){
-                            switch01 = '<div class="mb-3 form-check form-switch"><input type="checkbox" class="form-check-input switch01" role="switch" checked data-id="'+ item.ID +'" name="userstate"><label for="" class="form-check-label">啟用</label></div>';
+                            switch01 = '<div class="form-check form-switch"><input type="checkbox" class="form-check-input switch01" role="switch" checked data-id="'+ item.ID +'" name="userstate"><label for="" class="form-check-label">啟用</label></div>';
                         }else{
-                            switch01 = '<div class="mb-3 form-check form-switch"><input type="checkbox" class="form-check-input switch01" role="switch" data-id="'+ item.ID +'" name="userstate"><label for="" class="form-check-label" >停權</label></div>';
+                            switch01 = '<div class="form-check form-switch"><input type="checkbox" class="form-check-input switch01" role="switch" data-id="'+ item.ID +'" name="userstate"><label for="" class="form-check-label" >停權</label></div>';
                         }
                         let photoScr;
                         if(item.Photo != null){
@@ -1345,9 +1353,9 @@
                     data.data.forEach(function(item){
                         var switch01;
                         if(item.UserState == 'true' ){
-                            switch01 = '<div class="mb-3 form-check form-switch"><label for="" class="form-check-label">啟用</label></div>';
+                            switch01 = '<label for="" class="form-check-label">啟用</label>';
                         }else{
-                            switch01 = '<div class="mb-3 form-check form-switch"><label for="" class="form-check-label" >停權</label></div>';
+                            switch01 = '<label for="" class="form-check-label">停權</label>';
                         }
                         let photoScr;
                         if(item.Photo != null){
@@ -1539,7 +1547,10 @@
                     i++;
                 })
             }else{
-                cconsole.log(data.message);
+                console.log(data.message);
+                $("#userAllCouponF").empty();
+                let strT = '<p style="text-align: center; padding: 20px;">'+data.message+'</p>';
+                $("#userCouponTable").append(strT);
             }
         }
         function cancelOrderFunct() {
