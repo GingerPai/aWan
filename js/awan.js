@@ -6,7 +6,7 @@ $(function () {
     items: 10,
     autoplay: false, // 自動播放
     autoplayTimeout: 3000, // 自動播放間隔（以毫秒為單位）
-    autoplaySpeed: 500,
+    autoplaySpeed: 1000,
     //pagination: true,
     nav: false,
     loop: false, // 循環輪播
@@ -58,26 +58,26 @@ $(function () {
     autoplaySpeed: 500,
     //pagination: true,
     nav: true,
-    loop: true, // 循環輪播
+    loop: false, // 循環輪播
     dots: false,
     responsive: {
       0: {
-        items: 1.1, // 在較小的螢幕上顯示一個項目
+        items: 1, // 在較小的螢幕上顯示一個項目
       },
       414: {
-        items: 1.2, // 在較大的螢幕上顯示兩個項目
+        items: 1, // 在較大的螢幕上顯示兩個項目
       },
       575: {
-        items: 2.2, // 在較大的螢幕上顯示兩個項目
+        items: 2, // 在較大的螢幕上顯示兩個項目
       },
       768: {
-        items: 2.2, // 在較大的螢幕上顯示兩個項目
+        items: 3, // 在較大的螢幕上顯示兩個項目
       },
       992: {
-        items: 2.8, // 在更大的螢幕上顯示三個項目
+        items: 3, // 在更大的螢幕上顯示三個項目
       },
       1200: {
-        items: 3.5, // 在更大的螢幕上顯示三個項目
+        items: 4, // 在更大的螢幕上顯示三個項目
       },
     },
   });
@@ -150,7 +150,7 @@ let info_phone;
 $(function () {
   //Get yesterday's date
   let currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() - 1);
+  currentDate.setDate(currentDate.getDate() - 2);
   currentDate =
     currentDate.getFullYear() +
     "-" +
