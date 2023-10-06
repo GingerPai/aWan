@@ -58,7 +58,7 @@
                         <a class="nav-link" href="memberCenter.html" id="toMemberCenter">會員中心</a>
                     </li>
                     <li class="nav-item me-1 isLogoutHide d-none">
-                        <a class="nav-link" href="javascript:void(0)" id="logout">登出</a>
+                        <a class="nav-link logout" href="javascript:void(0)" id="logout">登出</a>
                     </li>
                 </ul>
             </div>
@@ -95,7 +95,7 @@
                         
                         <ul id="memberMenu" class="d-none">
                             <li><a href="memberCenter.html" id="toMemberCenter"><p>會員中心</p></a></li>
-                            <li><a href="javascript:void(0)" id="logout"><p>登出</p></a></li>
+                            <li><a class="logout" href="javascript:void(0)" id="logout"><p>登出</p></a></li>
                         </ul>
                     </div>
                 </div>
@@ -658,7 +658,7 @@
                 </div>
                 <div class="card">
                     <div class="card-head">
-                        <img src="images/product/產品麵類直式-02.jpg" class="card-img-top" alt="...">
+                        <img src="images/product/產品丼飯直式-02.jpg" class="card-img-top" alt="...">
                         <div class="priceArea"><span class="price">120</span>$</div>
                     </div>
                     <div class="card-body">
@@ -866,7 +866,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 p-3 m-auto">
-                    <h2 class="text-center">聯絡我們</h2>
+                    <h2 class="text-center">聯絡我們-預約內用</h2>
                     <div class="mb-2">
                         <label for="name" class="form-label">姓名</label>
                         <input type="text" id="name" class="form-control" placeholder="請輸入姓名"/>
@@ -892,9 +892,8 @@
                     <div class="mb-3" class="">
                         <label for="" class="form-label">預約時段</label>
                         <select name="tiket" id="tiket" class="form-select" size="2">
-                            <option value="VIP Ticket" selected>中午</option>
-                            <option value="Premium Ticket">晚上</option>
-                            <option value="Classic Ticket" class="d-none">Classic Ticket</option>
+                            <option value="" selected>中午</option>
+                            <option value="">晚上</option>
                         </select>
                         <div id="info_tiket" class="form-text text-end">
                             可預約時段

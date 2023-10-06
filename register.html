@@ -13,13 +13,64 @@
         <link rel="stylesheet" href="css/webcolor.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/page.css">
+        <link rel="stylesheet" href="css/mobNav.css">
         <style>
-
+            body {
+                padding-bottom: 50px;
+            }
         </style>
     </head>
     <body>
         <div class="nav">
-            <div class="container-md my-md-2">
+            <!-- Mobile Navbar -->
+            <div id="mobnav" class="d-sm-none">
+                <div id="mobNavMain">
+                    <div id="mobNavMainLeft">
+                        <a href="index.html" class="navbar-brand">
+                            <img id="mobnav-logo" src="images/A_WAN_log.png" alt="">
+                        </a>
+                    </div>
+                    <div id="mobNavMainRight">
+                        <a href="shoppingCar.html" id="MobShoppingCar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        <div id="mobMenuIcon" class="openMenu">
+                            <div class="mobMenuIconComp"></div>
+                            <div class="mobMenuIconComp"></div>
+                            <div class="mobMenuIconComp"></div>
+                            <div class="mobMenuIconComp"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="mobNavMenu">
+                    <ul id="mobMenu">
+                        <li class="nav-item me-1">
+                            <a class="nav-link" href="index.html#news">最新消息</a>
+                        </li>
+                        <li class="nav-item me-1">
+                            <a class="nav-link" href="index.html#product">阿万產品</a>
+                        </li>
+                        <li class="nav-item me-1">
+                            <a class="nav-link" href="index.html#chef">店家介紹</a>
+                        </li>
+                        <li class="nav-item me-1">
+                            <a class="nav-link" href="index.html#form">聯絡我們</a>
+                        </li>
+                        <li id="isLoginHide" class="nav-item me-1 d-flex flex-row justify-content-center align-content-center d-none">
+                            <a href="" class="nav-link" data-bs-toggle="modal" data-bs-target="#registerModel">註冊</a>
+                            <a href="" class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" >登入</a>
+                        </li>
+                        <li class="nav-item me-1 isLogoutHide d-none">
+                            <a class="nav-link" href="memberCenter.html" id="toMemberCenter">會員中心</a>
+                        </li>
+                        <li class="nav-item me-1 isLogoutHide d-none">
+                            <a class="nav-link logout" href="javascript:void(0)" id="logout">登出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Desktop Nabbar -->
+            <div class="container-md my-md-2 d-none d-sm-block">
                 <div class="navRow">
                     <a href="index.html" class="navbar-brand">
                         <img id="nav-logo" src="images/A_WAN_log.png" alt="">
@@ -27,16 +78,16 @@
                     <div class="" id="navbarNav">
                         <ul class="navMenu" id="">
                             <li class="nav-item me-1">
-                                <a class="nav-link" href="index.html/#news">最新消息</a>
+                                <a class="nav-link" href="index.html#news">最新消息</a>
                             </li>
                             <li class="nav-item me-1">
-                                <a class="nav-link" href="index.html/#product">阿万產品</a>
+                                <a class="nav-link" href="index.html#product">阿万產品</a>
                             </li>
                             <li class="nav-item me-1">
-                                <a class="nav-link" href="index.html/#chef">店家介紹</a>
+                                <a class="nav-link" href="index.html#chef">店家介紹</a>
                             </li>
                             <li class="nav-item me-1">
-                                <a class="nav-link" href="index.html/#form">聯絡我們</a>
+                                <a class="nav-link" href="index.html#form">聯絡我們</a>
                             </li>
                         </ul>
                     </div>
@@ -44,22 +95,24 @@
                         <a href="shoppingCar.html" id="shoppingCar">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </a>
-                        <a href="" class="btn btn-outline-dark"  data-bs-toggle="modal" data-bs-target="#loginModal" id="openloginModal">登入</a>
+                        <a href="" class="btn btn-outline-dark d-none"  data-bs-toggle="modal" data-bs-target="#loginModal" id="openloginModal">登入</a>
                         <div id="member" class="d-none">
                             <img src="images/member_icon.svg" alt="">
                             
                             <ul id="memberMenu" class="d-none">
                                 <li><a href="memberCenter.html" id="toMemberCenter"><p>會員中心</p></a></li>
-                                <li><a href="javascript:void(0)" id="logout"><p>登出</p></a></li>
+                                <li><a class="logout" href="javascript:void(0)" id="logout"><p>登出</p></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container pageHead">
             <div class="row">
-                <h1 class="titleH1">註冊中心</h1>
+                <div class="col-12">
+                    <h1 class="titleH1">註冊中心</h1>
+                </div>
                 <div class="col-md-6 m-auto mt-5">
                     <div class="mb-3">
                         <label for="userAcount">帳號設定</label>
@@ -527,6 +580,11 @@
                     // alert(data.message);
                     $("#openloginModal").addClass("d-none");
                     $("#member").removeClass("d-none");
+                    // mobile Navbar login --- start
+                    mobMenuHide();
+                    $(".isLogoutHide").removeClass("d-none");
+                    $("#isLoginHide").addClass("d-none");
+                    // mobile Navbar login --- end
                 }else{
                     //驗證失敗登入
                     // alert(data.message);
