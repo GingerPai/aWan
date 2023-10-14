@@ -612,14 +612,14 @@
                 });
                 var userstate;
                 if($(this).is(':checked')){
-                    console.log($(this).is(':checked') + $(this).data("id"));
-                    console.log($(this).is(':checked'));
-                    console.log('啟用' + $(this).data("id"));
+                    // console.log($(this).is(':checked') + $(this).data("id"));
+                    // console.log($(this).is(':checked'));
+                    // console.log('啟用' + $(this).data("id"));
                     $(this).next().text('啟用');
                 }else{
-                    console.log($(this).is(':checked'));
-                    console.log($(this).is(':checked') , $(this).data("id"));
-                    console.log('停權' + $(this).data("id"));
+                    // console.log($(this).is(':checked'));
+                    // console.log($(this).is(':checked') , $(this).data("id"));
+                    // console.log('停權' + $(this).data("id"));
                     $(this).next().text('停權');
                 }
                 //傳遞id和啟用/停權至後端更新會員狀態
@@ -717,12 +717,12 @@
                             couponNum = item.CouponNum;
                             couponAmount = parseInt(item.CouponAmount);
                             $("#couponN").val("優惠券"+couponNum);
-                            console.log(couponAmount);
+                            // console.log(couponAmount);
                             $("#discount").text(couponAmount);
                         }
                     }
                 });
-                console.log(userAcount);
+                // console.log(userAcount);
                 $("#orderNumber").text(orderNumber);
                 $("#memberAcount").text(userAcount);
                 $("#bookingDate").text(bookingDate);
@@ -753,7 +753,7 @@
                         userAcount: userAcount,
                     },
                     success: function(data){
-                        console.log(data);
+                        // console.log(data);
                         if (data.message){
                             // Orderer's name
                             $("#memberName").text(data.data[0].Username); 
@@ -784,9 +784,9 @@
             $(document).on("change",".o_state",function(){
                 $.each($("input[name='o_state']"), function () {
                     if($(this).is(':checked')){
-                        console.log($(this).data("id"));
+                        // console.log($(this).data("id"));
                         let orderNumber = $("#orderNumber").text();
-                        console.log(orderNumber);
+                        // console.log(orderNumber);
                         $.ajax({
                             type: "POST",
                             dataType: "json",
@@ -797,12 +797,12 @@
                             },
                             async: false,
                             success: function(data){
-                                console.log(data);
+                                // console.log(data);
                                 if(data.state){
-                                    console.log(data.message);
+                                    // console.log(data.message);
                                     $("#orderState").text(data.data[0].StateReason);
                                 }else{
-                                    alert.log(data.message);
+                                    alert(data.message);
                                 }
                             },
                             error: function(){
@@ -825,9 +825,9 @@
                     i=0;
                 }
                 $(this).siblings(".count").val(i);
-                console.log(i);
-                console.log(orderNum);
-                console.log(id);
+                // console.log(i);
+                // console.log(orderNum);
+                // console.log(id);
                 changeItemOrderAmount(id, orderNum, i);
                 // let couponN = $("#couponN").val();
                 // console.log(couponN);
@@ -848,9 +848,9 @@
                     i=10;
                 }
                 $(this).siblings(".count").val(i);
-                console.log(i);
-                console.log(orderNum);
-                console.log(id);
+                // console.log(i);
+                // console.log(orderNum);
+                // console.log(id);
                 changeItemOrderAmount(id, orderNum, i);
 
                 // let couponN = $("#couponN").val();
@@ -925,15 +925,15 @@
                 let paytime = formattedDate + " " +formattedTime; //訂單成立時間
                 // 生成訂單時間&&日期 ---------------------------------------- end
 
-                console.log("管理者:"+empId);
-                console.log("訂單編號: " + $("#orderNumber").text()); //訂單編號
-                console.log("使用者帳號: " + $("#memberAcount").text()); //訂單編號
-                console.log("折扣券代碼val: " + $("#couponN").val()); //優惠券代碼
+                // console.log("管理者:"+empId);
+                // console.log("訂單編號: " + $("#orderNumber").text()); //訂單編號
+                // console.log("使用者帳號: " + $("#memberAcount").text()); //訂單編號
+                // console.log("折扣券代碼val: " + $("#couponN").val()); //優惠券代碼
                 // console.log("折扣券代碼text: " + $("#couponN").text()); //優惠券代碼
-                console.log("折扣金額: " + $("#discount").text()); //折扣金額
-                console.log("結帳金額: " + $("#billSum").text()); //結帳金額
-                console.log("結帳時間: " + paytime ); //結帳時間
-                console.log("結帳人員: " + empId ); //結帳人員
+                // console.log("折扣金額: " + $("#discount").text()); //折扣金額
+                // console.log("結帳金額: " + $("#billSum").text()); //結帳金額
+                // console.log("結帳時間: " + paytime ); //結帳時間
+                // console.log("結帳人員: " + empId ); //結帳人員
                 //更新訂單內容(訂單編號、使用者帳號、優惠劵代碼、折扣金額、結帳金額、結帳時間、訂單狀態:5、結帳人員為誰)
                 //可為空:優惠劵代碼、折扣金額
                 $.ajax({
@@ -952,7 +952,7 @@
                     },
                     success: function(data){
                         if(data.state){
-                            console.log(data.message)
+                            // console.log(data.message)
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',
@@ -961,7 +961,7 @@
                                 timer: 1500
                             })
                         }else{
-                            console.log(data.message)
+                            //console.log(data.message)
                             Swal.fire({
                                 position: 'center',
                                 icon: 'error',
@@ -985,7 +985,7 @@
                     },
                     success: function(data){
                         if(data.state){
-                            console.log(data.message)
+                            //console.log(data.message)
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',
@@ -994,7 +994,7 @@
                                 timer: 1500
                             })
                         }else{
-                            console.log(data.message)
+                            //console.log(data.message)
                             Swal.fire({
                                 position: 'center',
                                 icon: 'error',
@@ -1010,12 +1010,12 @@
                 })
 
                 //更新優惠劵使用內容(優惠劵代碼、訂單編號、訂單金額、折扣金額、使用時間、變更使用狀態)，如訂單優惠券為空不執行
-                console.log("折扣券代碼val: " + $("#couponN").val()); //優惠券代碼
-                console.log("訂單編號: " + $("#orderNumber").text()); //訂單編號
-                console.log("訂單金額: " + $("#billtotal").text());  //訂單金額
-                console.log("折扣金額: " + $("#discount").text());  //折扣金額
-                console.log("使用時間: " + paytime);   //使用時間
-                console.log("變更使用狀態: " + "true"); //變更使用狀態
+                // console.log("折扣券代碼val: " + $("#couponN").val()); //優惠券代碼
+                // console.log("訂單編號: " + $("#orderNumber").text()); //訂單編號
+                // console.log("訂單金額: " + $("#billtotal").text());  //訂單金額
+                // console.log("折扣金額: " + $("#discount").text());  //折扣金額
+                // console.log("使用時間: " + paytime);   //使用時間
+                // console.log("變更使用狀態: " + "true"); //變更使用狀態
                 if ($("#couponN").val() != ""){
                     $.ajax({
                         type: "POST",
@@ -1031,7 +1031,7 @@
                         },
                         success: function(data){
                             if(data.state){
-                                console.log(data.message)
+                                // console.log(data.message)
                                 Swal.fire({
                                     position: 'center',
                                     icon: 'success',
@@ -1040,7 +1040,7 @@
                                     timer: 1500
                                 })
                             }else{
-                                console.log(data.message)
+                                // console.log(data.message)
                                 Swal.fire({
                                     position: 'center',
                                     icon: 'error',
@@ -1062,7 +1062,7 @@
             // 取消訂單
             $(document).on("click","#cancalOrederBtn",function(){
                 let orderNumber = $("#orderNumber").text();
-                console.log(orderNumber);
+                // console.log(orderNumber);
                 $("#cancelOrderNumber").text(orderNumber);
             })
             $(".showOrderDetailModal").click(function(){
@@ -1077,10 +1077,10 @@
                 $.each($("input[name='reason']:checked"), function () {
                     cancelReason = $(this).val();
                 });
-                console.log(cancelReason);
+                // console.log(cancelReason);
                 if (cancelReason!=""){
                     let cancelOrderNumber = $("#cancelOrderNumber").text();
-                    console.log(cancelOrderNumber);
+                    // console.log(cancelOrderNumber);
                     $.ajax({
                         type: "POST",
                         dataType: "json",
@@ -1122,7 +1122,7 @@
                                     showConfirmButton: false,
                                     timer: 2000
                                 })
-                                console.log(data.message);
+                                // console.log(data.message);
                             }
                         },
                         error: function(){
@@ -1142,7 +1142,7 @@
             // 會員登出 ----------------------------start
             //登出帳號、刪除uid並重整畫面
             $("#logout").click(function () {
-                console.log("hi");
+                // console.log("hi");
                 setCookie("uid_a", "", 7);
                 Swal.fire({
                     position: 'center',
@@ -1156,7 +1156,7 @@
             // 會員登出 ----------------------------end
         })
         function show_memberdata(data){
-            console.log(data);
+            // console.log(data);
             allMemberData = data;
             empId = data.data[0].EmpID;
             department = data.data[0].Department;
@@ -1178,7 +1178,7 @@
             }
         }
         function showdata_userstate(data){
-            console.log(data);
+            // console.log(data);
             if (data.state){
                 alert(data.message);
                 location.href = "controlCenter.html";
@@ -1199,7 +1199,7 @@
                     orderAmount: updateAmount
                 },
                 success: function(data){
-                    console.log(data);
+                    // console.log(data);
                     let orderNumber = $("#orderNumber").text();
                     // 讀取訂單內容
                     if (data.state){
@@ -1218,7 +1218,7 @@
                         })
                         // 讀取訂單內容(member's order content Item list, table name: )更新後項目加總金額後更新訂單金額
                     }else{
-                        console.log(data.message);
+                        // console.log(data.message);
                     }
                 },
                 error: function(){
@@ -1262,13 +1262,13 @@
 
 
                 let k = 1;
-                console.log(k+",typeof:"+typeof(k));
+                // console.log(k+",typeof:"+typeof(k));
                 k = parseFloat(k);
-                console.log(k+",typeof:"+typeof(k));
+                // console.log(k+",typeof:"+typeof(k));
                 k = k.toFixed(2);
-                console.log(k+",typeof:"+typeof(k));
+                // console.log(k+",typeof:"+typeof(k));
                 k = parseFloat(k);
-                console.log(k+",typeof:"+typeof(k));
+                // console.log(k+",typeof:"+typeof(k));
 
 
                 cdcTo2 = k - cdcTo2;          //0.050000000000000044,typeof:number
@@ -1304,8 +1304,8 @@
         
             let billtotal = parseInt($("#billtotal").text()); // 訂單合計金額
             let ifDisBig = parseInt(calcDiscount);
-            console.log(ifDisBig);
-            console.log(billtotal);
+            // console.log(ifDisBig);
+            // console.log(billtotal);
             if (-ifDisBig > billtotal){
                 calcDiscount = "-"+billtotal;
             };
@@ -1320,9 +1320,9 @@
 
         }
         function show_memdata(data){
-            console.log(data);
+            // console.log(data);
             if(data.state){
-                console.log(data.message);
+                // console.log(data.message);
                 //停權會員權利
                 //管理部: BOSS、Manager
                 //餐飲部: Manager
@@ -1371,22 +1371,22 @@
                     })
                 }
             }else{
-                console.log(data.message);
+                // console.log(data.message);
             }
         }
         function memberOrder(data){
-            console.log(data);
+            // console.log(data);
             if(data.state){
                 orderAll = data.data;
                 readAllOrder();
             }else{
-                console.log(data.message);
+                // console.log(data.message);
             }
         }
         function readAllOrder(){
             $("#memberOrderList").empty();
             let i = 1;
-            console.log(orderAll);
+            // console.log(orderAll);
             orderAll.forEach(function (item) {
                 let str = 
                     '<tr><td>'+i+'</td>'+
@@ -1419,9 +1419,9 @@
             })
         };
         function orderDetail(data){
-            console.log(data);
+            // console.log(data);
             if (data.state){
-                console.log(data.message);
+                // console.log(data.message);
                 let i = 1;
                 let total = 0;
                 let discount = parseInt($("#discount").text());
@@ -1463,12 +1463,12 @@
                             orderNumber: data.orderstatus[0].OrderNumber,
                         },
                         success: function(data){
-                            console.log(data);
+                            // console.log(data);
                             if(data.state){
-                                console.log(data.message);
+                                // console.log(data.message);
                                 $("#orderSum").text(data.data[0].OrderSum);
                             }else{
-                                console.log(data.message);
+                                // console.log(data.message);
                             }
                         },
                         error: function(){
@@ -1510,11 +1510,11 @@
                 
                 $("#orderDetailModal").modal("show");
             }else{
-                console.log(data.message);
+                // console.log(data.message);
             }
         }
         function orderProgress(data){
-            console.log(data);
+            // console.log(data);
             if(data.state){
                 $("#orderProgress").empty();
                 data.data.forEach(function(item){
@@ -1527,11 +1527,11 @@
             }
         }
         function readUserCoupF (data){
-            console.log(data);
+            // console.log(data);
             userCouponArray = data.data;
-            console.log(userCouponArray);
+            // console.log(userCouponArray);
             if(data.state){
-                console.log(data.message);
+                // console.log(data.message);
                 let i = 1;
                 $("#userAllCouponF").empty();
                 data.data.forEach(function(item){
@@ -1547,7 +1547,7 @@
                     i++;
                 })
             }else{
-                console.log(data.message);
+                // console.log(data.message);
                 $("#userAllCouponF").empty();
                 let strT = '<p style="text-align: center; padding: 20px;">'+data.message+'</p>';
                 $("#userCouponTable").append(strT);
