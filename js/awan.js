@@ -419,7 +419,7 @@ $(function () {
         });
       }
     }
-    console.log(orderList);
+    // console.log(orderList);
     $(this).siblings(".orderArea").find(".count").val("1");
     var shopingorderlist = JSON.stringify(orderList);
     localStorage.setItem("shopping", shopingorderlist);
@@ -556,7 +556,7 @@ $(function(){
 
 
 function showdata_login(data) {
-  console.log(data);
+  // console.log(data);
   // 如果回傳回來的json欄位state為true則重整畫面將欄位清空
   if (data.state) {
     if(data.data[0].UserState == "true"){
@@ -588,7 +588,7 @@ function showdata_login(data) {
 
 
 function showdata_check_uid(data){
-  console.log(data);
+  // console.log(data);
   if (data.state){
     //驗證成功，顯示已登入狀態
     // alert(data.message);
