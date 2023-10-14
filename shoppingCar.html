@@ -458,7 +458,7 @@
             })
             var shopingorderlist = JSON.stringify(orderList);
             localStorage.setItem("shopping", shopingorderlist);
-            console.log(orderList);
+            // console.log(orderList);
             runList();
             $(location).prop("href", location.href);
         });
@@ -477,7 +477,7 @@
             })
             var shopingorderlist = JSON.stringify(orderList);
             localStorage.setItem("shopping", shopingorderlist);
-            console.log(orderList);
+            // console.log(orderList);
             runList();
             $(location).prop("href", location.href);
         })
@@ -492,7 +492,7 @@
             $(this).siblings(".count").val(i);
         })
         $(".btnDel").click(function(){
-            console.log($(this).data("id"));
+            // console.log($(this).data("id"));
             for(let j = 0;j<orderList.length;j++){
                 if(orderList[j].ID == $(this).data("id")){
                     orderList.splice(j,1);
@@ -500,7 +500,7 @@
             }
             var shopingorderlist = JSON.stringify(orderList);
             localStorage.setItem("shopping", shopingorderlist);
-            console.log(orderList);
+            // console.log(orderList);
             runList();
             $(location).prop("href", location.href);
         })
@@ -508,17 +508,17 @@
         //Get today's date and the date seven days from now
         const timestampsToday = new Date();
         let mindate = timestampsToday.getFullYear() + "-" + (timestampsToday.getMonth() + 1).toString().padStart(2, '0') + "-" + timestampsToday.getDate().toString().padStart(2, '0');
-        console.log(mindate);
+        // console.log(mindate);
 
         let afterSeven = new Date(timestampsToday);
         afterSeven.setDate(timestampsToday.getDate() + 7);
         afterSeven = afterSeven.getFullYear() + "-" + (afterSeven.getMonth() + 1).toString().padStart(2, '0') + "-" + afterSeven.getDate().toString().padStart(2, '0');
-        console.log(afterSeven);
+        // console.log(afterSeven);
 
         $("#bookingdate").attr("min",mindate);
         $("#bookingdate").attr("max",afterSeven);
         $("#bookingdate").bind("input propertychang", function(){
-          console.log($(this).val());
+          // console.log($(this).val());
           bookingdate = $(this).val();
           $(this).removeClass("bdr");
         });
@@ -527,7 +527,7 @@
           $(".time").removeClass("active");
           $(this).addClass("active");
           bookingtime = $(this).text();
-          console.log(bookingtime);
+          // console.log(bookingtime);
         })
         
         $("#conrirmBtn").click(function(){
@@ -565,13 +565,13 @@
 
           let userAcoucnt = $(this).data("useracount");  //訂購人
           let orderSum = $("#sum").text(); //訂單總金額
-          console.log(orderList);          //訂購內容
-          console.log(userAcoucnt);        //訂購人
-          console.log(orderNumber);        //訂購單號
-          console.log(orderSum);           //訂單總金額
-          console.log(ordertime);          //訂單成立時間
-          console.log(bookingdate);        //預定取餐日期
-          console.log(bookingtime);        //預定取餐時段
+          // console.log(orderList);          //訂購內容
+          // console.log(userAcoucnt);        //訂購人
+          // console.log(orderNumber);        //訂購單號
+          // console.log(orderSum);           //訂單總金額
+          // console.log(ordertime);          //訂單成立時間
+          // console.log(bookingdate);        //預定取餐日期
+          // console.log(bookingtime);        //預定取餐時段
           if(orderSum == 0) {
             Swal.fire({
               icon: 'info',
@@ -606,12 +606,12 @@
             // alert("請選取取餐時段");
             $(".time").addClass("bdr");
           } else {
-            console.log(userAcoucnt);
-            console.log(orderNumber);
-            console.log(orderSum);
-            console.log(ordertime);
-            console.log(bookingdate);
-            console.log(bookingtime);
+            // console.log(userAcoucnt);
+            // console.log(orderNumber);
+            // console.log(orderSum);
+            // console.log(ordertime);
+            // console.log(bookingdate);
+            // console.log(bookingtime);
             // 執行製作訂單
             $.ajax({
               type: "POST",
@@ -640,19 +640,19 @@
                 }
               },
               error: function(){
-                console.log("錯誤member/create_memberorder.php");
+                // console.log("錯誤member/create_memberorder.php");
               }
               
             })
   
             orderList.forEach((item)=>{
-              console.log(orderNumber);       //訂購單號
-              console.log(userAcoucnt);       //訂購人
-              console.log(item.ID);           //產品編號
-              console.log(item.Name);         //產品名稱
-              console.log(item.Price);        //產品價格
-              console.log(item.Quantity);     //產品數量
-              console.log(ordertime);         //訂單時間
+              // console.log(orderNumber);       //訂購單號
+              // console.log(userAcoucnt);       //訂購人
+              // console.log(item.ID);           //產品編號
+              // console.log(item.Name);         //產品名稱
+              // console.log(item.Price);        //產品價格
+              // console.log(item.Quantity);     //產品數量
+              // console.log(ordertime);         //訂單時間
               $.ajax({
                 type: "POST",
                 url: url + "member/create_memberorderlist.php",
@@ -692,7 +692,7 @@
               runList();
               $("#bookingdate").val("");
               $(".time").removeClass("active");
-              console.log(createOrder_meg + "--" + createOrderlist_meg);
+              // console.log(createOrder_meg + "--" + createOrderlist_meg);
               Swal.fire({
                 title: '外帶餐點訂單預約成功',
                 text: "預約單號:" + orderNumber + "，詳細內容請至會員中心查詢",
@@ -707,7 +707,7 @@
                   location.href = "index.html";
               }, 1000);
             }else{
-              console.log(createOrder_meg + "--" + createOrderlist_meg);
+              // console.log(createOrder_meg + "--" + createOrderlist_meg);
               Swal.fire({
                 position: "center",
                 icon: 'error',
@@ -750,7 +750,7 @@
             },
             success: showdata_login,
             error: function () {
-              console.log("登入錯誤, /web202308/moz/php/login_api.php");
+              // console.log("登入錯誤, /web202308/moz/php/login_api.php");
             },
           });
         });
@@ -766,7 +766,7 @@
         
         //僅能輸入數字 ------------ end
         function showdata_check_uid(data){
-          console.log(data);
+          // console.log(data);
           if (data.state){
             $("#openloginModal").addClass("d-none");
             $("#member").removeClass("d-none");
@@ -785,7 +785,7 @@
         }
         // 會員登入function ----------------------------start
         function showdata_login(data) {
-          console.log(data);
+          // console.log(data);
           // 如果回傳回來的json欄位state為true則重整畫面將欄位清空
           if (data.state) {
             if(data.data[0].UserState == "true"){

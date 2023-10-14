@@ -396,7 +396,7 @@
             })
             // 會員中心-資料項目列-會員訂單
             $("#memberOrderBtn").click(function(){
-                console.log($("#memberAcount").text());
+                // console.log($("#memberAcount").text());
                 $.ajax({
                     type: "POST",
                     url: url + "member/memberorder_r_api.php",
@@ -445,14 +445,14 @@
                 $("#orderSum").text(orderSum);
                 $("#orderState").text(thisOrderState);
                 let stateCode = $(this).parents().siblings(".state").data("statecode");
-                console.log(stateCode);
+                // console.log(stateCode);
                 if(stateCode == "confirming" || stateCode == "confirmed"){
                     cancelOrderFunct();
                 }else{
                     cancelOrderFunct_dn ();
                 }
                 
-                console.log(orderNumber);
+                // console.log(orderNumber);
                 $.ajax({
                     type: "POST",
                     url: url + "member/memberorderlist_r_api.php",
@@ -469,7 +469,7 @@
             // 取消訂單
             $(document).on("click","#cancalOrederBtn",function(){
                 let orderNumber = $("#orderNumber").text();
-                console.log(orderNumber);
+                // console.log(orderNumber);
                 $("#cancelOrderNumber").text(orderNumber);
             })
             $(document).on("click","#cancalOreder",function(){
@@ -477,10 +477,10 @@
                 $.each($("input[name='reason']:checked"), function () {
                     cancelOrderReason = $(this).val();
                 });
-                console.log(cancelOrderReason);
+                // console.log(cancelOrderReason);
                 if (cancelOrderReason!=""){
                     let cancelOrderNumber = $("#cancelOrderNumber").text();
-                    console.log(cancelOrderNumber);
+                    // console.log(cancelOrderNumber);
                     $.ajax({
                         type: "POST",
                         dataType: "json",
@@ -522,7 +522,7 @@
                                     showConfirmButton: false,
                                     timer: 2000
                                 })
-                                console.log(data.message);
+                                // console.log(data.message);
                             }
                         },
                         error: function(){
@@ -542,7 +542,7 @@
         })
         // function-驗證會員是否為登入狀態-有即可進入該會員會員中心-
         function show_mem_data(data){
-            console.log(data);
+            // console.log(data);
             if (data.state){
                 // mobile Navbar login --- start
                 mobMenuHide();
@@ -571,11 +571,11 @@
                 $("#memberPhone").text(data.data[0].Phone);
                 //讀取會員訂購資料
             } else {
-                console.log(data);
+                // console.log(data);
             }
         }
         function memberOrder(data){
-            console.log(data);
+            // console.log(data);
             if(data.state){
                 orderAll = data.data;
                 readAllOrder();
@@ -621,9 +621,9 @@
             })
         };
         function orderDetail(data){
-            console.log(data);
+            // console.log(data);
             if (data.state){
-                console.log(data.message);
+                // console.log(data.message);
                 let i = 1;
                 $("#orderlistItem").empty();
                 data.data.forEach((item)=>{
@@ -648,7 +648,7 @@
                 })
                 $("#orderDetailModal").modal("show");
             }else{
-                console.log(data.message);
+                // console.log(data.message);
             }
         }
         function cancelOrderFunct() {

@@ -209,7 +209,7 @@
                 let currentDate = new Date();
                 currentDate.setDate(currentDate.getDate() - 1);
                 currentDate = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1).toString().padStart(2, "0") + "-" + currentDate.getDate().toString().padStart(2, "0");
-                console.log(currentDate);
+                // console.log(currentDate);
                 // $("#birthday").attr("min");
                 $("#birthday").attr("max", currentDate);
                     uA = $("#userAcount"); //帳號
@@ -547,7 +547,7 @@
 
 
             function showdata_login(data) {
-                console.log(data);
+                // console.log(data);
                 // 如果回傳回來的json欄位state為true則重整畫面將欄位清空
                 if (data.state) {
                     if(data.data[0].UserState == "true"){
@@ -574,7 +574,7 @@
 
 
             function showdata_check_uid(data){
-                console.log(data);
+                // console.log(data);
                 if (data.state){
                     //驗證成功，顯示已登入狀態
                     // alert(data.message);

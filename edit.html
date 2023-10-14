@@ -322,13 +322,13 @@
             // cookie監聽是否登入過 ------------- end
             //會員圖片變更監視 ------------ start
             $("#photo").change(function(){
-                console.log("test");
-                console.log(photo); //顯示標籤
-                console.log(photo.files[0]); //顯示標籤陣列
-                console.log(photo.files[0].name); //
-                console.log(photo.files[0].type); //
-                console.log(photo.files[0].size); //
-                console.log(URL.createObjectURL(photo.files[0])); //轉成前端路徑(在送到後端前，製作成確認送出的圖片預覽圖)
+                // console.log("test");
+                // console.log(photo); //顯示標籤
+                // console.log(photo.files[0]); //顯示標籤陣列
+                // console.log(photo.files[0].name); //
+                // console.log(photo.files[0].type); //
+                // console.log(photo.files[0].size); //
+                // console.log(URL.createObjectURL(photo.files[0])); //轉成前端路徑(在送到後端前，製作成確認送出的圖片預覽圖)
                 fileImg = photo.files[0];                
                 if(photo.files[0].type == 'image/png' || photo.files[0].type == 'image/jpeg'){
                     $("#memberPhoto").attr("src", "");
@@ -424,19 +424,19 @@
                 //會員電話
                 $("#memberPhone input").val(data.data[0].Phone);
             } else {
-                console.log(data);
+                // console.log(data);
             }
         }
         
         function uploadFile(){
-            console.log(userAcount);
+            // console.log(userAcount);
             // //轉換格式 符合$_FILE需求; 利用FormData()
             var formData = new FormData();  //FormData是一種格式
             formData.append('file', fileImg);
             formData.append('userAcount', userAcount); //將id加到 formData中送到後端
-            console.log(formData);
-            console.log(fileImg);
-            console.log(photo.files[0]);
+            // console.log(formData);
+            // console.log(fileImg);
+            // console.log(photo.files[0]);
 
             //將收集完成的資料formData 傳遞至api
             $.ajax({
@@ -454,16 +454,16 @@
             })
         }
         function showdata_uploadFile(data){
-            console.log(data);
+            // console.log(data);
             if (data.state){
-                console.log(data.message);
+                // console.log(data.message);
                 location.href = "memberCenter.html";
             } else {
-                console.log(data.message);
+                // console.log(data.message);
             }
         }
         function showdata_update(data){
-            console.log(data);
+            // console.log(data);
             if (data.state){
                 alert(data.message);
                 location.href = "memberCenter.html";
